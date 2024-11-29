@@ -3,6 +3,7 @@ from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import Chroma
 from transformers import pipeline
+from vec_db import ChromaDB 
 
 # Configurazione del logging
 logging.basicConfig(
@@ -33,17 +34,7 @@ def initialize_llama():
         raise
 
 # Configurazione di Chroma
-def initialize_chroma():
-    try:
-        logging.info("Inizializzazione del database Chroma...")
-        embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        persist_directory = "./chroma_data"
-        vectorstore = Chroma(embedding_function=embeddings, persist_directory=persist_directory)
-        logging.info("Database Chroma inizializzato con successo.")
-        return vectorstore
-    except Exception as e:
-        logging.error(f"Errore durante l'inizializzazione di Chroma: {e}")
-        raise
+
 
 # Funzione per prendere l'input, adattarlo e cercare su Chroma
 def process_query(input_text, llm, vectorstore):
@@ -60,6 +51,7 @@ def process_query(input_text, llm, vectorstore):
         logging.info("Esecuzione della ricerca su Chroma...")
         results = vectorstore.similarity_search(formatted_query, k=3)
         logging.info("Ricerca completata con successo.")
+        #to add pipeline endpoint 
         return results
     except Exception as e:
         logging.error(f"Errore durante l'elaborazione della query: {e}")
@@ -72,10 +64,12 @@ def run(query: str):
         
         # Inizializzazione
         llm = initialize_llama()
-        vectorstore = initialize_chroma()
+        #l'initializzazione di Chroma deve essere fatta prima 
+        db = ChromaDB()
+        vector_store = db.vectorstore
 
         # Processo della query
-        search_results = process_query(query, llm, vectorstore)
+        search_results = process_query(query, llm, vector_store)
 
         # Output dei risultati
         logging.info("Risultati della ricerca:")
