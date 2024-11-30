@@ -1,6 +1,6 @@
 import logging
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
 from chromadb import Settings as chroma_settings
 from langchain.docstore.document import Document
 

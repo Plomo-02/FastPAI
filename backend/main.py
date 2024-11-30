@@ -1,6 +1,10 @@
+import debugpy
 from fastapi import FastAPI, WebSocket
 from typing import List
 from rag.chain import run_handler
+
+# Enable debugger
+debugpy.listen(("0.0.0.0", 5678))
 
 app = FastAPI()
 

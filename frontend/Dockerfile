@@ -1,12 +1,11 @@
-FROM python:3.9-slim
+FROM node:20-slim
 
 WORKDIR /app
 
-# Copy all files
-COPY . .
+COPY package.json ./
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN yarn install --peers
 
-EXPOSE 8501
+EXPOSE 5173
 
-CMD ["streamlit", "run", "Home.py"]
+CMD ["yarn", "dev"] 
