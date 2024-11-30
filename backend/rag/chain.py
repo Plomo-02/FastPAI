@@ -89,6 +89,8 @@ def run_handler(query: str):
         logging.info("Risultati del handler:")
         for item in result["results"]:
             logging.info(f" - item: {item}")
+        
+        return result
           
     except Exception as e:
         logging.error(f"Errore durante l'esecuzione del handler: {e}")

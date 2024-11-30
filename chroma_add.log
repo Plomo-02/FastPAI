@@ -1,6 +1,0 @@
-2024-11-30 01:53:19,180 - INFO - Avvio del handler...
-2024-11-30 01:53:19,181 - ERROR - Errore durante l'esecuzione del handler: __init__() missing 1 required positional argument: 'docs'
-2024-11-30 01:56:02,479 - INFO - Avvio del handler...
-2024-11-30 01:56:09,468 - INFO - Use pytorch device_name: cpu
-2024-11-30 01:56:09,469 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-2024-11-30 01:56:12,353 - ERROR - Errore durante l'esecuzione del handler: __init__() got an unexpected keyword argument 'embedding'
