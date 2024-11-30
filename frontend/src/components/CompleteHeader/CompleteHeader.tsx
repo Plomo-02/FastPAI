@@ -6,7 +6,6 @@ import { SlimHeader } from "./SlimHeader";
 export const CompleteHeader: FC = () => {
 	return (
 		<Headers sticky={true}>
-			<SlimHeader />
 			<div className="it-nav-wrapper">
 				<CenterHeader />
 				{/* <NavHeader /> */}

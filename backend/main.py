@@ -5,6 +5,7 @@ import debugpy
 from fastapi import FastAPI, WebSocket
 from init_db import load_documents_from_directory
 from rag.chain import initialize_chroma, run_handler
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -29,9 +30,14 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             data = await websocket.receive_text()
             logger.info("Human: %s", data)
+            parsed_data = json.loads(data)
+            logger.info("Parsed data: %s", parsed_data)
+            input_value = parsed_data.get("message")
+            selected_city = parsed_data.get("city")
+            logger.info("selected_city: %s", selected_city)
 
             # AI Pipeline
-            result = run_handler(data, vectorstore, "napoli")
+            result = run_handler(input_value, vectorstore, selected_city)
 
             """
             Broadcast in teoria inutile visto che la comunicazione è 1-1

@@ -31,6 +31,10 @@ export const Chat: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedAppointment, setSelectedAppointment] = useState<string | null>(null);
 
+  // Stato per la modale di selezione città
+  const [isCityModalOpen, setIsCityModalOpen] = useState<boolean>(true);
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+
   // Stato per il banner di conferma
   const [showAlert, setShowAlert] = useState<boolean>(false);
 
@@ -91,7 +95,7 @@ export const Chat: FC = () => {
     };
 
     setMessages((prev: Message[]) => [...prev, userMessage]);
-    socketRef.current?.send(inputValue);
+    socketRef.current?.send(JSON.stringify({ message: inputValue, city: selectedCity }));
     setInputValue('');
     setIsTyping(true);
   };
@@ -116,6 +120,11 @@ export const Chat: FC = () => {
     handleShowAlert();
   };
 
+  const handleCitySelect = (city: string) => {
+    setSelectedCity(city);
+    setIsCityModalOpen(false); // Chiudi la modale
+  };
+
   const handleMouseEnter = (key: string) => setHoveredButton(key);
   const handleMouseLeave = () => setHoveredButton(null);
 
@@ -133,135 +142,161 @@ export const Chat: FC = () => {
   });
 
   return (
-    <Card className="shadow-lg card-bg card-big">
-      <CardBody className="d-flex flex-column">
-        {/* Area dei messaggi */}
-        <div
-          className="chat-messages flex-grow-1 overflow-auto mb-3"
-          style={{
-            border: '1px solid #e0e0e0',
-            borderRadius: '4px',
-            padding: '10px'
-          }}
-        >
-          {messages.map((message: Message) => (
-            <div
-              key={message.id}
-              className={`message mb-2 ${message.sender === 'user' ? 'text-end' : 'text-start'}`}
-            >
-              <span
-                className={`
-                  p-2 
-                  rounded 
-                  ${message.sender === 'user'
-                    ? 'bg-primary text-white'
-                    : 'bg-light text-dark'}
-                `}
-                style={{
-                  display: 'inline-block',
-                  maxWidth: '80%'
-                }}
+    <>
+      {/* Modale per selezionare una città */}
+<Modal isOpen={isCityModalOpen} toggle={() => setIsCityModalOpen(!isCityModalOpen)}>
+  <ModalHeader toggle={() => setIsCityModalOpen(!isCityModalOpen)}>
+    Seleziona una Città
+  </ModalHeader>
+  <ModalBody>
+    Scegli la tua città per continuare:
+    <div className="mt-3 d-flex flex-column gap-2">
+      <Button color="primary" onClick={() => handleCitySelect('Bari')}>
+        Bari
+      </Button>
+      <Button color="primary" onClick={() => handleCitySelect('Napoli')}>
+        Napoli
+      </Button>
+      <Button color="primary" onClick={() => handleCitySelect('Roma')}>
+        Roma
+      </Button>
+    </div>
+  </ModalBody>
+  <ModalFooter>
+  </ModalFooter>
+</Modal>
+
+
+      <Card className="shadow-lg card-bg card-big">
+        <CardBody className="d-flex flex-column">
+          {/* Area dei messaggi */}
+          <div
+            className="chat-messages flex-grow-1 overflow-auto mb-3"
+            style={{
+              border: '1px solid #e0e0e0',
+              borderRadius: '4px',
+              padding: '10px'
+            }}
+          >
+            {messages.map((message: Message) => (
+              <div
+                key={message.id}
+                className={`message mb-2 ${message.sender === 'user' ? 'text-end' : 'text-start'}`}
               >
-                {message.text}
+                <span
+                  className={`
+                    p-2 
+                    rounded 
+                    ${message.sender === 'user'
+                      ? 'bg-primary text-white'
+                      : 'bg-light text-dark'}
+                  `}
+                  style={{
+                    display: 'inline-block',
+                    maxWidth: '80%'
+                  }}
+                >
+                  {message.text}
 
-                {/* Rendering dei bottoni per date e orari */}
-                {message.sender === 'bot' &&
-                  message.data_ora &&
-                  Object.keys(message.data_ora).length > 0 && (
-                    <div className="mt-2 d-flex flex-wrap justify-content-start gap-2">
-                      {Object.entries(message.data_ora).map(([date, times]) =>
-                        times.map((time, index) => (
-                          <Button
-                            key={`${date}-${index}`}
-                            color="primary"
-                            outline
-                            size="sm"
-                            onMouseEnter={() => handleMouseEnter(`${date}-${index}`)}
-                            onMouseLeave={handleMouseLeave}
-                            onClick={() => handleAppointmentClick(`${date} ${time}`)}
-                            disabled={confirmedAppointments.includes(`${date} ${time}`)}
-                            style={buttonStyle(`${date}-${index}`, confirmedAppointments.includes(`${date} ${time}`))}
-                          >
-                            {`${date} ${time}`}
-                          </Button>
-                        ))
-                      )}
-                    </div>
-                  )}
-              </span>
-            </div>
-          ))}
+                  {/* Rendering dei bottoni per date e orari */}
+                  {message.sender === 'bot' &&
+                    message.data_ora &&
+                    Object.keys(message.data_ora).length > 0 && (
+                      <div className="mt-2 d-flex flex-wrap justify-content-start gap-2">
+                        {Object.entries(message.data_ora).map(([date, times]) =>
+                          times.map((time, index) => (
+                            <Button
+                              key={`${date}-${index}`}
+                              color="primary"
+                              outline
+                              size="sm"
+                              onMouseEnter={() => handleMouseEnter(`${date}-${index}`)}
+                              onMouseLeave={handleMouseLeave}
+                              onClick={() => handleAppointmentClick(`${date} ${time}`)}
+                              disabled={confirmedAppointments.includes(`${date} ${time}`)}
+                              style={buttonStyle(`${date}-${index}`, confirmedAppointments.includes(`${date} ${time}`))}
+                            >
+                              {`${date} ${time}`}
+                            </Button>
+                          ))
+                        )}
+                      </div>
+                    )}
+                </span>
+              </div>
+            ))}
 
-          {isTyping && (
-            <div className="text-start">
-              <span className="p-2 rounded bg-light text-dark">Sto scrivendo...</span>
-            </div>
-          )}
-        </div>
+            {isTyping && (
+              <div className="text-start">
+                <span className="p-2 rounded bg-light text-dark">Sto scrivendo...</span>
+              </div>
+            )}
+          </div>
 
-        {/* Input del messaggio */}
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(e);
-          }}
-          className="mt-auto"
-        >
-          <Row>
-            <Col md={9}>
-              <FormGroup>
-                <Input
-                  id="chat-input"
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Scrivi un messaggio..."
-                />
-              </FormGroup>
-            </Col>
-            <Col md={3}>
-              <Button
-                color="primary"
-                type="submit"
-                disabled={inputValue.trim() === ""}
-                block
-              >
-                Invia
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </CardBody>
+          {/* Input del messaggio */}
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e);
+            }}
+            className="mt-auto"
+          >
+            <Row>
+              <Col md={9}>
+                <FormGroup>
+                  <Input
+                    id="chat-input"
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Scrivi un messaggio..."
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={3}>
+                <Button
+                  color="primary"
+                  type="submit"
+                  disabled={inputValue.trim() === ""}
+                  block
+                >
+                  Invia
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </CardBody>
 
-      {/* Modale per confermare l'appuntamento */}
-      <Modal isOpen={isModalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>Conferma Appuntamento</ModalHeader>
-        <ModalBody>
-          Sei sicuro di voler confermare l'appuntamento selezionato: <strong>{selectedAppointment}</strong>?
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={handleConfirm}>
-            Conferma
-          </Button>
-          <Button color="secondary" outline onClick={toggleModal}>
-            Annulla
-          </Button>
-        </ModalFooter>
-      </Modal>
+        {/* Modale per confermare l'appuntamento */}
+        <Modal isOpen={isModalOpen} toggle={toggleModal}>
+          <ModalHeader toggle={toggleModal}>Conferma Appuntamento</ModalHeader>
+          <ModalBody>
+            Sei sicuro di voler confermare l'appuntamento selezionato: <strong>{selectedAppointment}</strong>?
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={handleConfirm}>
+              Conferma
+            </Button>
+            <Button color="secondary" outline onClick={toggleModal}>
+              Annulla
+            </Button>
+          </ModalFooter>
+        </Modal>
 
-      {/* Banner di conferma */}
-      {showAlert && (
-        <div
-          className="position-fixed top-0 start-50 translate-middle-x alert alert-success shadow-lg"
-          style={{
-            zIndex: 1050,
-            maxWidth: '90%',
-            animation: 'fade-in-out 3s'
-          }}
-        >
-          Appuntamento confermato con successo!
-        </div>
-      )}
-    </Card>
+        {/* Banner di conferma */}
+        {showAlert && (
+          <div
+            className="position-fixed top-0 start-50 translate-middle-x alert alert-success shadow-lg"
+            style={{
+              zIndex: 1050,
+              maxWidth: '90%',
+              animation: 'fade-in-out 3s'
+            }}
+          >
+            Appuntamento confermato con successo!
+          </div>
+        )}
+      </Card>
+    </>
   );
 };
