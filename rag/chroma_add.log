@@ -86,3 +86,28 @@
 2024-11-30 02:17:12,953 - INFO - Risultati del handler:
 2024-11-30 02:17:12,953 - INFO -  - item: page_content='Legalizzazione atti consolari e certificati italiani: Servizio di autenticazione documenti per atti consolari. Date disponibili a richiesta.' metadata={'api_endpoint': 'consolari_api', 'service_name': 'Legalizzazione Atti Consolari'}
 2024-11-30 02:17:12,954 - INFO -  - item: page_content='Servizio Tessera a Te: Servizio per assistenza e prenotazione tessere "Dedicata a te".' metadata={'api_endpoint': 'tessera_api', 'service_name': 'Tessera a Te'}
+2024-11-30 12:06:36,355 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:06:36,355 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:06:42,219 - ERROR - Errore nell'esecuzione del file: Expected metadata value to be a str, int, float or bool, got {'2024-12-4': ['08.00-10.00', '14.00-16.00'], '2024-12-5': ['08.00-10.00', '14.00-16.00']} which is a dict in upsert.
+
+Try filtering complex metadata from the document using langchain_community.vectorstores.utils.filter_complex_metadata.
+2024-11-30 12:09:23,641 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:09:23,641 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:09:26,283 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:09:26,303 - INFO - Ricerca completata con successo.
+2024-11-30 12:10:17,668 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:10:17,669 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:10:20,444 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:10:20,460 - INFO - Ricerca completata con successo.
+2024-11-30 12:10:35,583 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:10:35,583 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:10:39,284 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:10:39,316 - INFO - Ricerca completata con successo.
+2024-11-30 12:13:51,896 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:13:51,896 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:13:54,689 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:13:54,711 - INFO - Ricerca completata con successo.
+2024-11-30 12:18:55,493 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:18:55,493 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:18:58,386 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:18:58,407 - INFO - Ricerca completata con successo.
