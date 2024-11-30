@@ -107,7 +107,6 @@ def main():
 
         # Load documents from the directory
         docs = load_documents_from_directory(document_directory)
-        print(docs)
 
         if not docs:
             logging.warning("No documents found in the directory.")
@@ -118,7 +117,7 @@ def main():
 
         # Example query
         query = "voglio fare il passaporto come posso fare"
-        results = vector_store.get_from_chroma(query, comune="RM")
+        results = vector_store.get_from_chroma(query, comune="BA")
 
         print("Search Results:")
         for result in results:

@@ -132,3 +132,13 @@ Try filtering complex metadata from the document using langchain_community.vecto
 2024-11-30 13:30:52,540 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2024-11-30 13:30:54,543 - INFO - Esecuzione della ricerca su Chroma...
 2024-11-30 13:30:54,586 - INFO - Ricerca completata con successo.
+2024-11-30 13:35:56,955 - INFO - Loaded document from BA_carta_identita.json
+2024-11-30 13:35:56,955 - INFO - Loaded document from BA_casellario_giudiziale.json
+2024-11-30 13:35:56,956 - INFO - Loaded document from BA_passaporto.json
+2024-11-30 13:35:56,956 - INFO - Loaded document from RM_carta_identita.json
+2024-11-30 13:35:56,956 - INFO - Loaded document from RM_casellario_giudiziale.json
+2024-11-30 13:35:56,957 - INFO - Loaded document from RM_passaporto.json
+2024-11-30 13:36:00,318 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:36:00,318 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:36:03,349 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:36:03,381 - INFO - Ricerca completata con successo.
