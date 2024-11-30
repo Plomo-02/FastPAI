@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2024-11-30 13:19:36,372 - INFO - Use pytorch device_name: cpu
 2024-11-30 13:19:36,372 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2024-11-30 13:19:40,073 - INFO - Esecuzione della ricerca su Chroma...
@@ -6,3 +7,149 @@
 2024-11-30 14:33:02,596 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2024-11-30 14:33:06,149 - INFO - Esecuzione della ricerca su Chroma...
 2024-11-30 14:33:06,184 - INFO - Ricerca completata con successo.
+=======
+2024-11-29 23:09:36,305 - INFO - Inizializzazione del database Chroma...
+2024-11-29 23:09:43,690 - INFO - Use pytorch device_name: cpu
+2024-11-29 23:09:43,691 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-29 23:10:05,122 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2024-11-29 23:10:05,906 - INFO - Database Chroma inizializzato con successo.
+2024-11-29 23:10:05,944 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-29 23:10:06,309 - INFO - Aggiunti 3 documenti a Chroma.
+2024-11-29 23:10:06,310 - INFO - Operazione completata con successo.
+2024-11-29 23:13:21,380 - INFO - Inizializzazione del database Chroma...
+2024-11-29 23:13:30,557 - INFO - Use pytorch device_name: cpu
+2024-11-29 23:13:30,557 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-29 23:13:34,381 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2024-11-29 23:13:34,891 - INFO - Database Chroma inizializzato con successo.
+2024-11-29 23:13:34,891 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-29 23:13:35,317 - INFO - Aggiunti 3 documenti a Chroma.
+2024-11-29 23:13:35,321 - INFO - Risultati: {'ids': ['df54d4f8-b42a-47e8-84c5-ba7e03a1934f', '113ebafd-e7ee-497c-b094-d74e8ed63783', 'b8a4f883-72cb-410d-a815-a76bd87f2c54', '11587e47-146d-4076-995b-ce4a8947725b', '455f525d-4935-4925-b8ee-c9491a215a86', '8bdbcc91-b629-4db4-9509-7d3a8da6ed68'], 'embeddings': None, 'documents': ["Dove posso rinnovare la carta d'identità?", "Come prenotare un appuntamento all'anagrafe?", "Orari di apertura dell'ufficio passaporti.", "Dove posso rinnovare la carta d'identità?", "Come prenotare un appuntamento all'anagrafe?", "Orari di apertura dell'ufficio passaporti."], 'uris': None, 'data': None, 'metadatas': [{'type': 'servizio'}, {'type': 'servizio'}, {'type': 'orari'}, {'type': 'servizio'}, {'type': 'servizio'}, {'type': 'orari'}], 'included': [<IncludeEnum.documents: 'documents'>, <IncludeEnum.metadatas: 'metadatas'>]}
+2024-11-29 23:13:35,322 - INFO - Operazione completata con successo.
+2024-11-29 23:47:11,819 - INFO - Caricamento del database Chroma da disco...
+2024-11-29 23:47:20,084 - INFO - Use pytorch device_name: cpu
+2024-11-29 23:47:20,086 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-29 23:47:23,424 - ERROR - Errore durante il caricamento del database Chroma: type object 'Chroma' has no attribute 'from_disk'
+2024-11-29 23:47:23,425 - ERROR - Errore nell'esecuzione del file: type object 'Chroma' has no attribute 'from_disk'
+2024-11-29 23:55:16,143 - INFO - Use pytorch device_name: cpu
+2024-11-29 23:55:16,144 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:40:34,460 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:40:34,462 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:40:37,947 - ERROR - Errore nell'esecuzione del file: add_to_chroma() takes 2 positional arguments but 3 were given
+2024-11-30 01:41:28,111 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:41:28,111 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:41:31,301 - ERROR - Errore nell'esecuzione del file: add_to_chroma() takes 2 positional arguments but 3 were given
+2024-11-30 01:41:56,591 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:41:56,591 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:42:00,148 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-30 01:42:00,150 - ERROR - Errore durante l'aggiunta di documenti a Chroma: tuple indices must be integers or slices, not str
+2024-11-30 01:42:00,150 - ERROR - Errore nell'esecuzione del file: tuple indices must be integers or slices, not str
+2024-11-30 01:44:11,530 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:44:11,531 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:44:15,240 - INFO - Aggiunta del documento a Chroma: {'id': None, 'metadata': {'api_endpoint': 'tessera_api', 'service_name': 'Tessera a Te'}, 'page_content': 'Servizio Tessera a Te: Servizio per assistenza e prenotazione tessere "Dedicata a te".', 'type': 'Document'}
+2024-11-30 01:44:15,240 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-30 01:44:15,241 - ERROR - Errore durante l'aggiunta di documenti a Chroma: string indices must be integers
+2024-11-30 01:44:15,241 - ERROR - Errore nell'esecuzione del file: string indices must be integers
+2024-11-30 01:47:43,345 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:47:43,346 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:47:47,628 - ERROR - Errore nell'esecuzione del file: langchain_community.vectorstores.chroma.Chroma() got multiple values for keyword argument 'embedding_function'
+2024-11-30 01:48:31,166 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:48:31,167 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:48:33,163 - ERROR - Errore nell'esecuzione del file: langchain_community.vectorstores.chroma.Chroma() got multiple values for keyword argument 'embedding_function'
+2024-11-30 01:49:58,563 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:49:58,564 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:00:35,368 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:00:35,370 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:00:58,343 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:00:58,344 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:04:33,790 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:04:33,790 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:04:37,546 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-30 02:04:37,548 - ERROR - Errore durante l'aggiunta di documenti a Chroma: 'Document' object is not subscriptable
+2024-11-30 02:04:37,548 - ERROR - Errore nell'esecuzione del file: 'Document' object is not subscriptable
+2024-11-30 02:06:29,777 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:06:29,778 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:10:13,570 - INFO - Avvio del handler...
+2024-11-30 02:10:20,192 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:10:20,193 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:10:23,742 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 02:10:26,421 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 02:10:26,434 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 02:10:26,550 - WARNING - Number of requested results 3 is greater than number of elements in index 2, updating n_results = 2
+2024-11-30 02:10:26,559 - INFO - Risultati del handler:
+2024-11-30 02:10:26,560 - ERROR - Errore durante l'esecuzione del handler: 'Document' object is not subscriptable
+2024-11-30 02:15:23,454 - INFO - Avvio del handler...
+2024-11-30 02:15:30,647 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:15:30,648 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:15:34,336 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 02:15:37,447 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 02:15:37,460 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 02:15:37,550 - WARNING - Number of requested results 3 is greater than number of elements in index 2, updating n_results = 2
+2024-11-30 02:15:37,556 - INFO - Risultati del handler:
+2024-11-30 02:15:37,557 - ERROR - Errore durante l'esecuzione del handler: 'Document' object has no attribute 'content'
+2024-11-30 02:16:58,417 - INFO - Avvio del handler...
+2024-11-30 02:17:06,473 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:17:06,473 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:17:10,343 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 02:17:12,806 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 02:17:12,817 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 02:17:12,949 - WARNING - Number of requested results 3 is greater than number of elements in index 2, updating n_results = 2
+2024-11-30 02:17:12,953 - INFO - Risultati del handler:
+2024-11-30 02:17:12,953 - INFO -  - item: page_content='Legalizzazione atti consolari e certificati italiani: Servizio di autenticazione documenti per atti consolari. Date disponibili a richiesta.' metadata={'api_endpoint': 'consolari_api', 'service_name': 'Legalizzazione Atti Consolari'}
+2024-11-30 02:17:12,954 - INFO -  - item: page_content='Servizio Tessera a Te: Servizio per assistenza e prenotazione tessere "Dedicata a te".' metadata={'api_endpoint': 'tessera_api', 'service_name': 'Tessera a Te'}
+2024-11-30 12:06:36,355 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:06:36,355 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:06:42,219 - ERROR - Errore nell'esecuzione del file: Expected metadata value to be a str, int, float or bool, got {'2024-12-4': ['08.00-10.00', '14.00-16.00'], '2024-12-5': ['08.00-10.00', '14.00-16.00']} which is a dict in upsert.
+
+Try filtering complex metadata from the document using langchain_community.vectorstores.utils.filter_complex_metadata.
+2024-11-30 12:09:23,641 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:09:23,641 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:09:26,283 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:09:26,303 - INFO - Ricerca completata con successo.
+2024-11-30 12:10:17,668 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:10:17,669 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:10:20,444 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:10:20,460 - INFO - Ricerca completata con successo.
+2024-11-30 12:10:35,583 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:10:35,583 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:10:39,284 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:10:39,316 - INFO - Ricerca completata con successo.
+2024-11-30 12:13:51,896 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:13:51,896 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:13:54,689 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:13:54,711 - INFO - Ricerca completata con successo.
+2024-11-30 12:18:55,493 - INFO - Use pytorch device_name: cpu
+2024-11-30 12:18:55,493 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 12:18:58,386 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 12:18:58,407 - INFO - Ricerca completata con successo.
+2024-11-30 13:24:02,181 - INFO - Loaded document from carta_identita.json
+2024-11-30 13:24:02,181 - INFO - Loaded document from casellario_giudiziale.json
+2024-11-30 13:24:02,182 - INFO - Loaded document from passaporto.json
+2024-11-30 13:24:05,690 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:24:05,691 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:24:08,972 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:24:09,015 - INFO - Ricerca completata con successo.
+2024-11-30 13:27:28,472 - INFO - Loaded document from carta_identita.json
+2024-11-30 13:27:28,473 - INFO - Loaded document from casellario_giudiziale.json
+2024-11-30 13:27:28,474 - INFO - Loaded document from passaporto.json
+2024-11-30 13:27:31,853 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:27:31,854 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:27:34,284 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:27:34,310 - INFO - Ricerca completata con successo.
+2024-11-30 13:30:49,253 - INFO - Loaded document from carta_identita.json
+2024-11-30 13:30:49,253 - INFO - Loaded document from casellario_giudiziale.json
+2024-11-30 13:30:49,255 - INFO - Loaded document from passaporto.json
+2024-11-30 13:30:52,539 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:30:52,540 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:30:54,543 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:30:54,586 - INFO - Ricerca completata con successo.
+2024-11-30 13:35:56,955 - INFO - Loaded document from BA_carta_identita.json
+2024-11-30 13:35:56,955 - INFO - Loaded document from BA_casellario_giudiziale.json
+2024-11-30 13:35:56,956 - INFO - Loaded document from BA_passaporto.json
+2024-11-30 13:35:56,956 - INFO - Loaded document from RM_carta_identita.json
+2024-11-30 13:35:56,956 - INFO - Loaded document from RM_casellario_giudiziale.json
+2024-11-30 13:35:56,957 - INFO - Loaded document from RM_passaporto.json
+2024-11-30 13:36:00,318 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:36:00,318 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:36:03,349 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:36:03,381 - INFO - Ricerca completata con successo.
+>>>>>>> rag

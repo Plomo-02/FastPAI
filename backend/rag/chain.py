@@ -1,10 +1,10 @@
-import os
+import json
 import logging
-from vec_db import ChromaDB
-from vec_db import ChromaDB
+import os
+
 from dotenv import load_dotenv
 from openai import OpenAI
-import json 
+from vec_db import ChromaDB
 
 # Carica le variabili d'ambiente
 load_dotenv()
@@ -13,38 +13,37 @@ load_dotenv()
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("chain_app.log"),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.FileHandler("chain_app.log"), logging.StreamHandler()],
 )
 
 # Configura il prompt per la formattazione della query
+
 
 # Configura il vectorstore Chroma
 def initialize_chroma():
     db = ChromaDB()
     return db.vectorstore
 
+
 # Classe per gestire le interazioni con OpenAI e Chroma
 class LlamaChromaHandler:
     def __init__(self, vectorstore):
         self.client = OpenAI(
             base_url="https://api.aimlapi.com/v1",  # URL dell'API
-            api_key=os.getenv("API_KEY"),          # Chiave API
+            api_key=os.getenv("API_KEY"),  # Chiave API
         )
         self.vectorstore = vectorstore
-        
+
     def send_response(self, query: str, result: str) -> str:
         """Invia una richiesta al modello OpenAI e restituisce solo un JSON strutturato."""
         user_content = f"""Richiesta originale dell'utente: {query}
                             Risposta dal database vettoriale: {result}"""
-        
+
         response = self.client.chat.completions.create(
             model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",  # Modello utilizzato
             messages=[
                 {
-                    "role": "system", 
+                    "role": "system",
                     "content": """Sei un assistente esperto di comunicazione chiara e accessibile per i cittadini. Ricevi una risposta da un database vettoriale contenente dati come città, date, orari disponibili e altre informazioni, insieme alla richiesta originale dell'utente. Il tuo compito è:
     1. Formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti.
     2. Identificare se la richiesta dell'utente riguarda solo un'informazione o un'intenzione di prenotare un servizio.
@@ -53,26 +52,27 @@ class LlamaChromaHandler:
     {
     "info": "La tua risposta chiara e concisa all'utente.",
     "is_info": true/false  // true se la richiesta riguarda solo informazioni, false se riguarda una prenotazione.
-    }"""
+    }""",
                 },
-                {"role": "user", "content": user_content}
+                {"role": "user", "content": user_content},
             ],
-            max_tokens=256
+            max_tokens=256,
         )
         return response.choices[0].message.content.strip()
-
-
 
     def send_request(self, prompt: str) -> str:
         """Invia una richiesta al modello OpenAI."""
         response = self.client.chat.completions.create(
             model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",  # Modello utilizzato
             messages=[
-                {"role": "system", "content": """Sei un assistente esperto di ricerca e Ricevi una richiesta utente e riformulala per essere adatta a una ricerca semantica per similarità in un database vettoriale (ChromaDB).
-    Assicurati che la richiesta sia chiara, concisa e rappresenti al meglio l'intento originale dell'utente. rispondi esclusivamente con la richiesta senza scrivere."""},
-                {"role": "user", "content": prompt}
+                {
+                    "role": "system",
+                    "content": """Sei un assistente esperto di ricerca e Ricevi una richiesta utente e riformulala per essere adatta a una ricerca semantica per similarità in un database vettoriale (ChromaDB).
+    Assicurati che la richiesta sia chiara, concisa e rappresenti al meglio l'intento originale dell'utente. rispondi esclusivamente con la richiesta senza scrivere.""",
+                },
+                {"role": "user", "content": prompt},
             ],
-            max_tokens=128
+            max_tokens=128,
         )
         return response.choices[0].message.content.strip()
 
@@ -80,12 +80,11 @@ class LlamaChromaHandler:
         try:
             # Fase 1: Formatta la query con il modello AI
             logging.info("Formattazione della query tramite OpenAI...")
-            
+
             formatted_query = self.send_request(input_text)
 
             # Fase 2: Ricerca nel vectorstore
             logging.info("Esecuzione della ricerca su Chroma...")
-            results = self.vectorstore.similarity_search(formatted_query, k=1)
             results = self.vectorstore.similarity_search(formatted_query, k=1)
 
             # Restituisci i risultati
@@ -94,17 +93,20 @@ class LlamaChromaHandler:
             logging.error(f"Errore durante l'elaborazione della query: {e}")
             raise
 
-    def format_response(self,query,result):
-        metadata_formatted = ' '.join(f"{key} {value}" for key, value in result.items())
-        llm_response = self.send_response(query,metadata_formatted)
+    def format_response(self, query, result):
+        metadata_formatted = " ".join(f"{key} {value}" for key, value in result.items())
+        llm_response = self.send_response(query, metadata_formatted)
         """
         implement the response formatting here, to obtain date e orari disponibili, e info 
         """
         date_orari = result.get("date-orari")
         need_to_do = result.get("need-to-do")
-        result_json = {"llm_response": llm_response, "response": date_orari, "info": need_to_do }
+        result_json = {
+            "llm_response": llm_response,
+            "response": date_orari,
+            "info": need_to_do,
+        }
         return result_json
-
 
 
 def clean_dict(data):
@@ -114,7 +116,7 @@ def clean_dict(data):
         return [clean_dict(item) for item in data]
     elif isinstance(data, str):
         # Rimuove \n e spazi extra
-        cleaned_str = data.replace('\n', '').strip()
+        cleaned_str = data.replace("\n", "").strip()
         # Prova a caricare come JSON se possibile
         try:
             return json.loads(cleaned_str)
@@ -122,6 +124,8 @@ def clean_dict(data):
             return cleaned_str
     else:
         return data
+
+
 # Funzione principale per eseguire la gestione
 def run_handler(query: str):
     try:
@@ -129,7 +133,6 @@ def run_handler(query: str):
 
         # Inizializza il vectorstore Chroma
         vectorstore = initialize_chroma()
-        
 
         # Crea la handler
         handler = LlamaChromaHandler(vectorstore=vectorstore)
@@ -138,19 +141,17 @@ def run_handler(query: str):
         result = handler.process_query(query)
 
         # Mostra i risultati
-        
+
         metadata = result["results"][0].metadata
-        
+
         metadata = result["results"][0].metadata
-        
+
         output = handler.format_response(query, metadata)
-        
+
         clean_output = clean_dict(output)
 
         return clean_output
-          
+
     except Exception as e:
         logging.error(f"Errore durante l'esecuzione del handler: {e}")
         raise
-
-
