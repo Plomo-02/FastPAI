@@ -2,10 +2,15 @@ FROM node:20-slim
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json /app/
 
-RUN yarn install --peers
+RUN npm install
+RUN npm install -g serve
+
+COPY . /app/
+
+RUN npm run build
 
 EXPOSE 5173
 
-CMD ["yarn", "dev"] 
+CMD ["serve", "-s", "build", "-l", "5173"]
