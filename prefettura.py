@@ -100,17 +100,17 @@ class TribunaleDataExtractor:
 
 
 # How to use:
-if __name__ == "__main__":
-    try:
-        extractor = TribunaleDataExtractor()
-        data_servizio = extractor.get_data_from_tribunale("cittadinanza")
-        print("Titolo:", data_servizio.titolo)
-        print("Giorni liberi:")
-        for giorno in data_servizio.giorni_liberi:
-            print(giorno)
-        print("\nCosa avere:")
-        for cosa in data_servizio.cosa_avere:
-            print(cosa)
-        print(f"\nMisc info:\n{data_servizio.misc_info}")
-    except Exception as e:
-        print(e)
+# if __name__ == "__main__":
+#     try:
+#         extractor = TribunaleDataExtractor()
+#         data_servizio = extractor.get_data_from_tribunale("cittadinanza")
+#         print("Titolo:", data_servizio.titolo)
+#         print("Giorni liberi:")
+#         for giorno in data_servizio.giorni_liberi:
+#             print(giorno)
+#         print("\nCosa avere:")
+#         for cosa in data_servizio.cosa_avere:
+#             print(cosa)
+#         print(f"\nMisc info:\n{data_servizio.misc_info}")
+#     except Exception as e:
+#         print(e)

@@ -22,3 +22,67 @@
 2024-11-29 23:47:23,425 - ERROR - Errore nell'esecuzione del file: type object 'Chroma' has no attribute 'from_disk'
 2024-11-29 23:55:16,143 - INFO - Use pytorch device_name: cpu
 2024-11-29 23:55:16,144 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:40:34,460 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:40:34,462 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:40:37,947 - ERROR - Errore nell'esecuzione del file: add_to_chroma() takes 2 positional arguments but 3 were given
+2024-11-30 01:41:28,111 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:41:28,111 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:41:31,301 - ERROR - Errore nell'esecuzione del file: add_to_chroma() takes 2 positional arguments but 3 were given
+2024-11-30 01:41:56,591 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:41:56,591 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:42:00,148 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-30 01:42:00,150 - ERROR - Errore durante l'aggiunta di documenti a Chroma: tuple indices must be integers or slices, not str
+2024-11-30 01:42:00,150 - ERROR - Errore nell'esecuzione del file: tuple indices must be integers or slices, not str
+2024-11-30 01:44:11,530 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:44:11,531 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:44:15,240 - INFO - Aggiunta del documento a Chroma: {'id': None, 'metadata': {'api_endpoint': 'tessera_api', 'service_name': 'Tessera a Te'}, 'page_content': 'Servizio Tessera a Te: Servizio per assistenza e prenotazione tessere "Dedicata a te".', 'type': 'Document'}
+2024-11-30 01:44:15,240 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-30 01:44:15,241 - ERROR - Errore durante l'aggiunta di documenti a Chroma: string indices must be integers
+2024-11-30 01:44:15,241 - ERROR - Errore nell'esecuzione del file: string indices must be integers
+2024-11-30 01:47:43,345 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:47:43,346 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:47:47,628 - ERROR - Errore nell'esecuzione del file: langchain_community.vectorstores.chroma.Chroma() got multiple values for keyword argument 'embedding_function'
+2024-11-30 01:48:31,166 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:48:31,167 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 01:48:33,163 - ERROR - Errore nell'esecuzione del file: langchain_community.vectorstores.chroma.Chroma() got multiple values for keyword argument 'embedding_function'
+2024-11-30 01:49:58,563 - INFO - Use pytorch device_name: cpu
+2024-11-30 01:49:58,564 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:00:35,368 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:00:35,370 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:00:58,343 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:00:58,344 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:04:33,790 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:04:33,790 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:04:37,546 - INFO - Aggiunta dei documenti al database Chroma...
+2024-11-30 02:04:37,548 - ERROR - Errore durante l'aggiunta di documenti a Chroma: 'Document' object is not subscriptable
+2024-11-30 02:04:37,548 - ERROR - Errore nell'esecuzione del file: 'Document' object is not subscriptable
+2024-11-30 02:06:29,777 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:06:29,778 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:10:13,570 - INFO - Avvio del handler...
+2024-11-30 02:10:20,192 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:10:20,193 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:10:23,742 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 02:10:26,421 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 02:10:26,434 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 02:10:26,550 - WARNING - Number of requested results 3 is greater than number of elements in index 2, updating n_results = 2
+2024-11-30 02:10:26,559 - INFO - Risultati del handler:
+2024-11-30 02:10:26,560 - ERROR - Errore durante l'esecuzione del handler: 'Document' object is not subscriptable
+2024-11-30 02:15:23,454 - INFO - Avvio del handler...
+2024-11-30 02:15:30,647 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:15:30,648 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:15:34,336 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 02:15:37,447 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 02:15:37,460 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 02:15:37,550 - WARNING - Number of requested results 3 is greater than number of elements in index 2, updating n_results = 2
+2024-11-30 02:15:37,556 - INFO - Risultati del handler:
+2024-11-30 02:15:37,557 - ERROR - Errore durante l'esecuzione del handler: 'Document' object has no attribute 'content'
+2024-11-30 02:16:58,417 - INFO - Avvio del handler...
+2024-11-30 02:17:06,473 - INFO - Use pytorch device_name: cpu
+2024-11-30 02:17:06,473 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 02:17:10,343 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 02:17:12,806 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 02:17:12,817 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 02:17:12,949 - WARNING - Number of requested results 3 is greater than number of elements in index 2, updating n_results = 2
+2024-11-30 02:17:12,953 - INFO - Risultati del handler:
+2024-11-30 02:17:12,953 - INFO -  - item: page_content='Legalizzazione atti consolari e certificati italiani: Servizio di autenticazione documenti per atti consolari. Date disponibili a richiesta.' metadata={'api_endpoint': 'consolari_api', 'service_name': 'Legalizzazione Atti Consolari'}
+2024-11-30 02:17:12,954 - INFO -  - item: page_content='Servizio Tessera a Te: Servizio per assistenza e prenotazione tessere "Dedicata a te".' metadata={'api_endpoint': 'tessera_api', 'service_name': 'Tessera a Te'}
