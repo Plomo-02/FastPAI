@@ -87,7 +87,7 @@ class LlamaChromaHandler:
 
             # Fase 2: Ricerca nel vectorstore
             logging.info("Esecuzione della ricerca su Chroma...")
-            results = self.vectorstore.get_from_chroma(formatted_query, city.lower())
+            results = self.vectorstore.get_from_chroma(formatted_query, city)
 
             # Restituisci i risultati
             return {"results": results}
@@ -137,6 +137,8 @@ def run_handler(query: str, vectorstore, city : str):
         handler = LlamaChromaHandler(vectorstore=vectorstore)
 
         # Esegui la gestione della query
+        city = city.lower()
+        city = city.strip()
         result = handler.process_query(query,city)
 
         # Mostra i risultati
