@@ -325,12 +325,7 @@ Eventuali richieste di rilascio a carattere d’urgenza, ad esempio, per motivi 
         # Inizializza il vectorstore Chroma
         vector_store = ChromaDB(docs)
 
-        print(
-            vector_store.get_from_chroma(
-                "voglio fare il passaporto come posso fare", comune="RM"
-            )
-        )
-
+        
         # Aggiungi i documenti a Chroma
 
 
