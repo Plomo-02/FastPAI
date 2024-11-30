@@ -111,3 +111,24 @@ Try filtering complex metadata from the document using langchain_community.vecto
 2024-11-30 12:18:55,493 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2024-11-30 12:18:58,386 - INFO - Esecuzione della ricerca su Chroma...
 2024-11-30 12:18:58,407 - INFO - Ricerca completata con successo.
+2024-11-30 13:24:02,181 - INFO - Loaded document from carta_identita.json
+2024-11-30 13:24:02,181 - INFO - Loaded document from casellario_giudiziale.json
+2024-11-30 13:24:02,182 - INFO - Loaded document from passaporto.json
+2024-11-30 13:24:05,690 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:24:05,691 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:24:08,972 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:24:09,015 - INFO - Ricerca completata con successo.
+2024-11-30 13:27:28,472 - INFO - Loaded document from carta_identita.json
+2024-11-30 13:27:28,473 - INFO - Loaded document from casellario_giudiziale.json
+2024-11-30 13:27:28,474 - INFO - Loaded document from passaporto.json
+2024-11-30 13:27:31,853 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:27:31,854 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:27:34,284 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:27:34,310 - INFO - Ricerca completata con successo.
+2024-11-30 13:30:49,253 - INFO - Loaded document from carta_identita.json
+2024-11-30 13:30:49,253 - INFO - Loaded document from casellario_giudiziale.json
+2024-11-30 13:30:49,255 - INFO - Loaded document from passaporto.json
+2024-11-30 13:30:52,539 - INFO - Use pytorch device_name: cpu
+2024-11-30 13:30:52,540 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 13:30:54,543 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 13:30:54,586 - INFO - Ricerca completata con successo.
