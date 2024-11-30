@@ -40,7 +40,7 @@ class LlamaChromaHandler:
                             Risposta dal database vettoriale: {result}"""
 
         response = self.client.chat.completions.create(
-            model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",  # Modello utilizzato
+            model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",  # Modello utilizzato
             messages=[
                 {
                     "role": "system",
@@ -63,7 +63,7 @@ class LlamaChromaHandler:
     def send_request(self, prompt: str) -> str:
         """Invia una richiesta al modello OpenAI."""
         response = self.client.chat.completions.create(
-            model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",  # Modello utilizzato
+            model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",  # Modello utilizzato
             messages=[
                 {
                     "role": "system",
