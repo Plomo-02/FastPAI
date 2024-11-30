@@ -8,11 +8,15 @@ class DataServizio:
         self,
         titolo: str,
         giorni_liberi: List[str],
+        info_orari: str,
+        a_chi_si_rivolge: str,
         cosa_avere: List[str],
         misc_info: str,
     ):
         self.titolo = titolo
         self.giorni_liberi = giorni_liberi
+        self.info_orari = info_orari
+        self.a_chi_si_rivolge = a_chi_si_rivolge
         self.cosa_avere = cosa_avere
         self.misc_info = misc_info
 
@@ -45,6 +49,18 @@ class TribunaleDataExtractor:
                 date = line.split("'")[1]
                 dates.append(date)
         return dates
+
+    def extract_info_orari(self, soup: BeautifulSoup) -> str:
+        info_orari = soup.find("article", id="info-orari")
+        if info_orari:
+            return info_orari.get_text(strip=True)
+        return ""
+
+    def extract_a_chi_si_rivolge(self, soup: BeautifulSoup) -> str:
+        a_chi_si_rivolge = soup.find("article", id="a-chi-si-rivolge")
+        if a_chi_si_rivolge:
+            return a_chi_si_rivolge.get_text(strip=True)
+        return ""
 
     def extract_cosa_serve(self, soup: BeautifulSoup) -> List[str]:
         cosa_serve_div = soup.find("article", id="cosa-serve")
@@ -79,13 +95,26 @@ class TribunaleDataExtractor:
             script_content = soup.find("script", type="text/javascript").string
             giorni_liberi = self.extract_dates_from_script(script_content)
 
+            # Extract "info orari" information
+            info_orari = self.extract_info_orari(soup)
+
+            # Extract "a chi si rivolge" information
+            a_chi_si_rivolge = self.extract_a_chi_si_rivolge(soup)
+
             # Extract "cosa-serve" information
             cosa_avere = self.extract_cosa_serve(soup)
 
             # Extract "misc info"
             misc_info = self.extract_misc_info(soup)
 
-            return DataServizio(titolo, giorni_liberi, cosa_avere, misc_info)
+            return DataServizio(
+                titolo,
+                giorni_liberi,
+                info_orari,
+                a_chi_si_rivolge,
+                cosa_avere,
+                misc_info,
+            )
         else:
             raise Exception(
                 f"Failed to retrieve data for endpoint {endpoint}. Status code: {response.status_code}"
@@ -103,11 +132,13 @@ class TribunaleDataExtractor:
 if __name__ == "__main__":
     try:
         extractor = TribunaleDataExtractor()
-        data_servizio = extractor.get_data_from_tribunale("cittadinanza")
+        data_servizio = extractor.get_data_from_tribunale("tessera_a_te")
         print("Titolo:", data_servizio.titolo)
         print("Giorni liberi:")
         for giorno in data_servizio.giorni_liberi:
             print(giorno)
+        print(f"\nInfo orari:\n{data_servizio.info_orari}")
+        print(f"\nA chi si rivolge:\n{data_servizio.a_chi_si_rivolge}")
         print("\nCosa avere:")
         for cosa in data_servizio.cosa_avere:
             print(cosa)
