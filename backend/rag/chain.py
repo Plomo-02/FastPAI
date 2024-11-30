@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-from vec_db import ChromaDB
+from .vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -152,6 +152,3 @@ def run_handler(query: str, vectorstore, city : str):
         logging.error(f"Errore durante l'esecuzione del handler: {e}")
         raise
 
-vectorstore = ChromaDB()
-
-run_handler("Quando è il prossimo appuntamento?", vectorstore, "roma")
