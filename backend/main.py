@@ -31,7 +31,7 @@ async def websocket_endpoint(websocket: WebSocket):
             logger.info("Human: %s", data)
 
             # AI Pipeline
-            result = run_handler(data, vectorstore, "Bari")
+            result = run_handler(data, vectorstore, "napoli")
 
             """
             Broadcast in teoria inutile visto che la comunicazione è 1-1

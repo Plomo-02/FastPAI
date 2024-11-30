@@ -91,6 +91,7 @@ class LlamaChromaHandler:
             # Fase 2: Ricerca nel vectorstore
             logger.info("Esecuzione della ricerca su Chroma...")
             results = self.vectorstore.get_from_chroma(formatted_query, city)
+            logging.info(" Risultati: %s", results)
 
             # Restituisci i risultati
             return {"results": results}
@@ -99,13 +100,19 @@ class LlamaChromaHandler:
             raise
 
     def format_response(self, query, result):
-        metadata_formatted = " ".join(f"{key} {value}" for key, value in result.items())
+        if result == "nothing":
+            metadata_formatted = "Nessun risultato trovato."
+            date_orari = None
+            need_to_do = None
+        else:
+            metadata_formatted = " ".join(f"{key} {value}" for key, value in result.items())
+            date_orari = result.get("date_orari")
+            need_to_do = result.get("need_to_do")
         llm_response = self.send_response(query, metadata_formatted)
         """
         implement the response formatting here, to obtain date e orari disponibili, e info 
         """
-        date_orari = result.get("date_orari")
-        need_to_do = result.get("need_to_do")
+        
         result_json = {
             "llm_response": llm_response,
             "response": date_orari,
@@ -143,11 +150,15 @@ def run_handler(query: str, vectorstore: ChromaDB, city: str = None):
         city = city.lower()
         city = city.strip()
         result = handler.process_query(query, city)
+        logging.info(" Risultati: %s", result)
 
         # Mostra i risultati
-        metadata = result["results"][0].metadata
+        if result["results"] is None:
+            output = handler.format_response(query, "nothing")
+        else:
+            metadata = result["results"][0][0].metadata
 
-        output = handler.format_response(query, metadata)
+            output = handler.format_response(query, metadata)
 
         clean_output = clean_dict(output)
 

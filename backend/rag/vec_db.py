@@ -51,11 +51,23 @@ class ChromaDB:
     def get_from_chroma(self, query, comune="roma"):
         try:
             logging.info("Esecuzione della ricerca su Chroma...")
-            results = self.vectorstore.similarity_search(
+            results = self.vectorstore.similarity_search_with_score(
                 query, k=1, filter={"comune": comune}
             )
+            
             logging.info("Ricerca completata con successo.")
-            return results
+            filtered_results = [
+            (doc, score) for doc, score in results if score <= 1.0
+        ]
+            logging.info("Risultati: %s", results)    
+        
+            if filtered_results:
+                logging.info("Risultato trovato con score <= 0.2.")
+                return filtered_results
+            else:
+                logging.info("Nessun risultato soddisfa i criteri di similarità.")
+                return None
+    
         except Exception as e:
             logging.error(f"Errore durante l'elaborazione della query: {e}")
             raise
