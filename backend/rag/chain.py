@@ -2,9 +2,9 @@ import json
 import logging
 import os
 
+from .vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
-from vec_db import ChromaDB
 
 # Carica le variabili d'ambiente
 load_dotenv()
@@ -20,8 +20,8 @@ logging.basicConfig(
 
 
 # Configura il vectorstore Chroma
-def initialize_chroma():
-    db = ChromaDB()
+def initialize_chroma(docs):
+    db = ChromaDB(docs)
     return db.vectorstore
 
 
@@ -127,12 +127,9 @@ def clean_dict(data):
 
 
 # Funzione principale per eseguire la gestione
-def run_handler(query: str):
+def run_handler(query: str, vectorstore):
     try:
         logging.info("Avvio del handler...")
-
-        # Inizializza il vectorstore Chroma
-        vectorstore = initialize_chroma()
 
         # Crea la handler
         handler = LlamaChromaHandler(vectorstore=vectorstore)
@@ -141,9 +138,6 @@ def run_handler(query: str):
         result = handler.process_query(query)
 
         # Mostra i risultati
-
-        metadata = result["results"][0].metadata
-
         metadata = result["results"][0].metadata
 
         output = handler.format_response(query, metadata)

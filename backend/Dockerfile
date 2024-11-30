@@ -12,7 +12,6 @@ COPY requirements.txt .
 
 # Install dependencies with pip cache
 RUN pip install --no-cache-dir -r requirements.txt
-
 # No need to COPY source files since we're using volumes
 
 ENTRYPOINT ["python", "-m","uvicorn", "main:app"]

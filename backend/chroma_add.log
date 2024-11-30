@@ -1,0 +1,24 @@
+2024-11-30 14:22:51,725 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:22:51,726 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:24:20,515 - INFO - Avvio del handler...
+2024-11-30 14:24:20,518 - ERROR - Errore durante l'esecuzione del handler: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-30 14:25:26,873 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:25:26,874 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:27:13,632 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:27:13,633 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:27:32,237 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:27:32,237 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:51:41,738 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:51:41,739 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:52:27,015 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:52:27,015 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:52:38,379 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:52:38,379 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:53:07,783 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:53:07,783 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:53:17,832 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:53:17,833 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:53:34,138 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:53:34,139 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:57:17,595 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:57:17,595 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
