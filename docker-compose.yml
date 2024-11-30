@@ -21,7 +21,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "5173:5173"
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     environment:
       - VITE_BACKEND_URL=http://backend:8000
     depends_on:
