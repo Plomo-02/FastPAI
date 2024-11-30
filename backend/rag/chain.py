@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-from .vec_db import ChromaDB
+from vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -45,14 +45,16 @@ class LlamaChromaHandler:
                 {
                     "role": "system",
                     "content": """Sei un assistente esperto di comunicazione chiara e accessibile per i cittadini. Ricevi una risposta da un database vettoriale contenente dati come città, date, orari disponibili e altre informazioni, insieme alla richiesta originale dell'utente. Il tuo compito è:
-    1. Formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti.
-    2. Identificare se la richiesta dell'utente riguarda solo un'informazione o un'intenzione di prenotare un servizio.
+        1. Valutare se la risposta dal database vettoriale è sufficientemente correlata con la richiesta dell'utente. 
+            - Se lo è, formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti.
+            - Se non lo è, generare autonomamente una risposta pertinente basandoti solo sulla richiesta dell'utente.
+        2. Identificare se la richiesta dell'utente riguarda solo un'informazione o un'intenzione di prenotare un servizio.
 
-    Devi restituire solo un JSON nel seguente formato e nient'altro:
-    {
-    "info": "La tua risposta chiara e concisa all'utente.",
-    "is_info": true/false  // true se la richiesta riguarda solo informazioni, false se riguarda una prenotazione.
-    }""",
+        Devi restituire solo un JSON nel seguente formato e nient'altro:
+        {
+        "info": "La tua risposta chiara e concisa all'utente.",
+        "is_info": true/false  // true se la richiesta riguarda solo informazioni, false se riguarda una prenotazione.
+        }""",
                 },
                 {"role": "user", "content": user_content},
             ],
@@ -149,3 +151,4 @@ def run_handler(query: str, vectorstore):
     except Exception as e:
         logging.error(f"Errore durante l'esecuzione del handler: {e}")
         raise
+
