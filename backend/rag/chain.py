@@ -1,6 +1,6 @@
 import os
 import logging
-from vec_db import ChromaDB
+from .vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
 

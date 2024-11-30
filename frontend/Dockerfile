@@ -2,11 +2,10 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Copy all files
-COPY . .
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "Home.py"]
+# No need to COPY source files since we're using volumes

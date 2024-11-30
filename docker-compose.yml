@@ -7,6 +7,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+      - "5678:5678"
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    command: python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
   frontend:
     build:
@@ -14,7 +21,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8501:8501"
+    volumes:
+      - ./frontend:/app
     environment:
       - BACKEND_URL=ws://backend:8000/ws
     depends_on:
       - backend
+    command: streamlit run Home.py --server.runOnSave=true
