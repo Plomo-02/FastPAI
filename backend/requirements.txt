@@ -8,3 +8,5 @@ langchain-chroma==0.1.4
 python-dotenv==1.0.1
 sentence-transformers
 chromadb
+debugpy
+scipy

@@ -2,3 +2,4 @@
 2024-11-30 10:45:07,048 - INFO - Use pytorch device_name: cpu
 2024-11-30 10:45:07,048 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2024-11-30 10:45:20,497 - ERROR - Errore durante l'esecuzione del handler: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-30 12:11:04,012 - INFO - generated new fontManager

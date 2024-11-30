@@ -3,7 +3,7 @@ import logging
 from .vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
-from response import format_response
+from .response import format_response
 
 # Carica le variabili d'ambiente
 load_dotenv()
