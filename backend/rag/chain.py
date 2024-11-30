@@ -2,9 +2,12 @@ import json
 import logging
 import os
 
-from .vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
+
+from .vec_db import ChromaDB
+
+logger = logging.getLogger(__name__)
 
 # Carica le variabili d'ambiente
 load_dotenv()
@@ -22,7 +25,7 @@ logging.basicConfig(
 # Configura il vectorstore Chroma
 def initialize_chroma(docs):
     db = ChromaDB(docs)
-    return db.vectorstore
+    return db
 
 
 # Classe per gestire le interazioni con OpenAI e Chroma
@@ -81,18 +84,18 @@ class LlamaChromaHandler:
     def process_query(self, input_text: str, city: str):
         try:
             # Fase 1: Formatta la query con il modello AI
-            logging.info("Formattazione della query tramite OpenAI...")
+            logger.info("Formattazione della query tramite OpenAI...")
 
             formatted_query = self.send_request(input_text)
 
             # Fase 2: Ricerca nel vectorstore
-            logging.info("Esecuzione della ricerca su Chroma...")
+            logger.info("Esecuzione della ricerca su Chroma...")
             results = self.vectorstore.get_from_chroma(formatted_query, city)
 
             # Restituisci i risultati
             return {"results": results}
         except Exception as e:
-            logging.error(f"Errore durante l'elaborazione della query: {e}")
+            logger.error("Errore durante l'elaborazione della query: %s", e)
             raise
 
     def format_response(self, query, result):
@@ -129,9 +132,9 @@ def clean_dict(data):
 
 
 # Funzione principale per eseguire la gestione
-def run_handler(query: str, vectorstore, city : str):
+def run_handler(query: str, vectorstore: ChromaDB, city: str = None):
     try:
-        logging.info("Avvio del handler...")
+        logger.info("Avvio del handler...")
 
         # Crea la handler
         handler = LlamaChromaHandler(vectorstore=vectorstore)
@@ -139,7 +142,7 @@ def run_handler(query: str, vectorstore, city : str):
         # Esegui la gestione della query
         city = city.lower()
         city = city.strip()
-        result = handler.process_query(query,city)
+        result = handler.process_query(query, city)
 
         # Mostra i risultati
         metadata = result["results"][0].metadata
@@ -151,6 +154,5 @@ def run_handler(query: str, vectorstore, city : str):
         return clean_output
 
     except Exception as e:
-        logging.error(f"Errore durante l'esecuzione del handler: {e}")
+        logger.error(f"Errore durante l'esecuzione del handler: {e}")
         raise
-
