@@ -15,7 +15,7 @@ export const CenterHeader: FC<Props> = ({ props }) => {
 					<HeaderSocialsZone label="Source code on">
 						<ul>
 							<li>
-								<a href="#" aria-label="Github" target="https://github.com/Plomo-02/FastPAI">
+								<a href="https://github.com/Plomo-02/FastPAI" aria-label="Github" target="https://github.com/Plomo-02/FastPAI">
 									<Icon icon="it-github" />
 								</a>
 							</li>
