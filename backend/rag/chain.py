@@ -1,6 +1,7 @@
 import os
 import logging
 from vec_db import ChromaDB
+from vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
 import json 
@@ -85,6 +86,7 @@ class LlamaChromaHandler:
             # Fase 2: Ricerca nel vectorstore
             logging.info("Esecuzione della ricerca su Chroma...")
             results = self.vectorstore.similarity_search(formatted_query, k=1)
+            results = self.vectorstore.similarity_search(formatted_query, k=1)
 
             # Restituisci i risultati
             return {"results": results}
@@ -136,6 +138,8 @@ def run_handler(query: str):
         result = handler.process_query(query)
 
         # Mostra i risultati
+        
+        metadata = result["results"][0].metadata
         
         metadata = result["results"][0].metadata
         

@@ -1,0 +1,4 @@
+2024-11-30 14:00:45,492 - INFO - Use pytorch device_name: mps
+2024-11-30 14:00:45,492 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:00:49,908 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 14:00:50,276 - INFO - Ricerca completata con successo.
