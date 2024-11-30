@@ -48,7 +48,7 @@ class ChromaDB:
             logging.error(f"Errore durante l'aggiunta di documenti a Chroma: {e}")
             raise
 
-    def get_from_chroma(self, query, comune="RM"):
+    def get_from_chroma(self, query, comune="roma"):
         try:
             logging.info("Esecuzione della ricerca su Chroma...")
             results = self.vectorstore.similarity_search(

@@ -78,7 +78,7 @@ class LlamaChromaHandler:
         )
         return response.choices[0].message.content.strip()
 
-    def process_query(self, input_text: str):
+    def process_query(self, input_text: str, city: str):
         try:
             # Fase 1: Formatta la query con il modello AI
             logging.info("Formattazione della query tramite OpenAI...")
@@ -87,7 +87,7 @@ class LlamaChromaHandler:
 
             # Fase 2: Ricerca nel vectorstore
             logging.info("Esecuzione della ricerca su Chroma...")
-            results = self.vectorstore.similarity_search(formatted_query, k=1)
+            results = self.vectorstore.get_from_chroma(formatted_query, city.lower())
 
             # Restituisci i risultati
             return {"results": results}
@@ -102,7 +102,7 @@ class LlamaChromaHandler:
         implement the response formatting here, to obtain date e orari disponibili, e info 
         """
         date_orari = result.get("date_orari")
-        need_to_do = result.get("need-to-do")
+        need_to_do = result.get("need_to_do")
         result_json = {
             "llm_response": llm_response,
             "response": date_orari,
@@ -129,7 +129,7 @@ def clean_dict(data):
 
 
 # Funzione principale per eseguire la gestione
-def run_handler(query: str, vectorstore):
+def run_handler(query: str, vectorstore, city : str):
     try:
         logging.info("Avvio del handler...")
 
@@ -137,7 +137,7 @@ def run_handler(query: str, vectorstore):
         handler = LlamaChromaHandler(vectorstore=vectorstore)
 
         # Esegui la gestione della query
-        result = handler.process_query(query)
+        result = handler.process_query(query,city)
 
         # Mostra i risultati
         metadata = result["results"][0].metadata
@@ -152,3 +152,6 @@ def run_handler(query: str, vectorstore):
         logging.error(f"Errore durante l'esecuzione del handler: {e}")
         raise
 
+vectorstore = ChromaDB()
+
+run_handler("Quando è il prossimo appuntamento?", vectorstore, "roma")
