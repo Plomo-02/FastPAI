@@ -18,10 +18,15 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_text()
+            print("Human:", data)
 
-            result = run_handler(data)
+            # AI Pipeline
+            # result = run_handler(data)
+            result = "Ciao sono PAI"
             
             '''
+            Broadcast in teoria inutile visto che la comunicazione è 1-1
+
             # Send back the human message to all clients
             for connection in active_connections:
                 await connection.send_json({
@@ -31,7 +36,7 @@ async def websocket_endpoint(websocket: WebSocket):
             '''
 
             agent_message = result
-            print("Agent message:", agent_message)
+            print("Agent:", agent_message)
             
             # Send computer response to all clients
             for connection in active_connections:

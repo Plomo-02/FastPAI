@@ -40,25 +40,3 @@
 .read-the-docs {
   color: #888;
 }
-
-.chat-messages {
-  scrollbar-width: thin;
-  scrollbar-color: #666 #fff;
-}
-
-.chat-messages::-webkit-scrollbar {
-  width: 6px;
-}
-
-.chat-messages::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.chat-messages::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
-}
-
-.chat-messages::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
