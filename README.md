@@ -12,10 +12,8 @@ Un'applicazione progettata per semplificare la comunicazione con la pubblica amm
 
 ## Tecnologie Utilizzate
 - **Frontend**: [Streamlit](https://streamlit.io/)
-- **Backend**: Python (FastAPI o Flask per le API REST)
+- **Backend**: Python (FastAPI)
 - **Modello Linguistico**: Llama 3.1
-- **Database**: PostgreSQL
-- **Cloud**: AWS/GCP per l'hosting e il deployment
 
 ---
 
