@@ -1,11 +1,11 @@
-FROM python:3.9-slim
+FROM node:20-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY package.json ./
 
-RUN pip install -r requirements.txt
+RUN yarn install --peers
 
-EXPOSE 8501
+EXPOSE 5173
 
-# No need to COPY source files since we're using volumes
+CMD ["yarn", "dev"] 

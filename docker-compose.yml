@@ -20,11 +20,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "8501:8501"
+      - "5173:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     environment:
-      - BACKEND_URL=ws://backend:8000/ws
+      - VITE_BACKEND_URL=http://localhost:8000
     depends_on:
       - backend
-    command: streamlit run Home.py --server.runOnSave=true
