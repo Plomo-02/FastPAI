@@ -1,9 +1,9 @@
 import os
 import logging
-from .vec_db import ChromaDB
+from vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
-from .response import format_response
+
 
 # Carica le variabili d'ambiente
 load_dotenv()
@@ -34,6 +34,21 @@ class LlamaChromaHandler:
         )
         self.vectorstore = vectorstore
         
+    def send_response(self,query: str, result: str) -> str:
+        """Invia una richiesta al modello OpenAI."""
+        user_content = f"""Richiesta originale dell'utente: {query}
+                        Risposta dal database vettoriale: {result}"""
+        
+        response = self.client.chat.completions.create(
+            model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",  # Modello utilizzato
+            messages=[
+                {"role": "system", "content": """Sei un assistente esperto di comunicazione chiara e accessibile per i cittadini. Ricevi una risposta da un database vettoriale contenente dati come città, date, orari disponibili e altre informazioni, insieme alla richiesta originale dell'utente. Il tuo compito è formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti."""},
+                {"role": "user", "content": user_content}
+            ],
+            max_tokens=128
+        )
+        return response.choices[0].message.content.strip()
+
 
     def send_request(self, prompt: str) -> str:
         """Invia una richiesta al modello OpenAI."""
@@ -57,13 +72,24 @@ class LlamaChromaHandler:
 
             # Fase 2: Ricerca nel vectorstore
             logging.info("Esecuzione della ricerca su Chroma...")
-            results = self.vectorstore.similarity_search(formatted_query, k=3)
+            results = self.vectorstore.similarity_search(formatted_query, k=1)
 
             # Restituisci i risultati
             return {"results": results}
         except Exception as e:
             logging.error(f"Errore durante l'elaborazione della query: {e}")
             raise
+
+    def format_response(self,query,result):
+        metadata_formatted = ' '.join(f"{key} {value}" for key, value in result.items())
+        llm_response = self.send_response(query,metadata_formatted)
+        """
+        implement the response formatting here, to obtain date e orari disponibili, e info 
+        """
+        date_orari = result.get("date-orari")
+        need_to_do = result.get("need-to-do")
+        result_json = {"llm_response": llm_response, "response": date_orari, "info": need_to_do }
+        return result_json
 
 # Funzione principale per eseguire la gestione
 def run_handler(query: str):
@@ -81,13 +107,15 @@ def run_handler(query: str):
         result = handler.process_query(query)
 
         # Mostra i risultati
-        logging.info("Risultati del handler:")
-        for item in result["results"]:
-            logging.info(f" - item: {item}")
         
-        output = format_response(query,result)
+        metadata = result["results"][0].metadata
+        
+        output = handler.format_response(query,metadata)
+
+        print(output)
           
     except Exception as e:
         logging.error(f"Errore durante l'esecuzione del handler: {e}")
         raise
 
+run_handler("come posso rinnovare la carta d'identità?")  
