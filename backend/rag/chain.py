@@ -3,6 +3,7 @@ import logging
 from .vec_db import ChromaDB
 from dotenv import load_dotenv
 from openai import OpenAI
+from response import format_response
 
 # Carica le variabili d'ambiente
 load_dotenv()
@@ -18,12 +19,6 @@ logging.basicConfig(
 )
 
 # Configura il prompt per la formattazione della query
-def create_prompt():
-    return """
-    Ricevi una richiesta utente e riformulala per essere adatta a una ricerca ottimale in un database vettoriale (ChromaDB).
-    Assicurati che la query sia chiara, concisa e rappresenti al meglio l'intento originale dell'utente. rispondi esclusivamente con la query senza scrivere
-    Richiesta originale: {input_text}
-    """
 
 # Configura il vectorstore Chroma
 def initialize_chroma():
@@ -38,7 +33,7 @@ class LlamaChromaHandler:
             api_key=os.getenv("API_KEY"),          # Chiave API
         )
         self.vectorstore = vectorstore
-        self.prompt_template = create_prompt()
+        
 
     def send_request(self, prompt: str) -> str:
         """Invia una richiesta al modello OpenAI."""
@@ -57,7 +52,7 @@ class LlamaChromaHandler:
         try:
             # Fase 1: Formatta la query con il modello AI
             logging.info("Formattazione della query tramite OpenAI...")
-            #formatted_prompt = self.prompt_template.format(input_text=input_text)
+            
             formatted_query = self.send_request(input_text)
 
             # Fase 2: Ricerca nel vectorstore
@@ -90,7 +85,7 @@ def run_handler(query: str):
         for item in result["results"]:
             logging.info(f" - item: {item}")
         
-        return result
+        output = format_response(query,result)
           
     except Exception as e:
         logging.error(f"Errore durante l'esecuzione del handler: {e}")
