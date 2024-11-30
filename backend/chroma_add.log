@@ -1,0 +1,63 @@
+2024-11-30 14:22:51,725 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:22:51,726 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:24:20,515 - INFO - Avvio del handler...
+2024-11-30 14:24:20,518 - ERROR - Errore durante l'esecuzione del handler: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-30 14:25:26,873 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:25:26,874 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:27:13,632 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:27:13,633 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:27:32,237 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:27:32,237 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:51:41,738 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:51:41,739 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:52:27,015 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:52:27,015 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:52:38,379 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:52:38,379 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:53:07,783 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:53:07,783 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:53:17,832 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:53:17,833 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:53:34,138 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:53:34,139 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 14:57:17,595 - INFO - Use pytorch device_name: cpu
+2024-11-30 14:57:17,595 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 15:15:26,918 - INFO - Loaded document from NA_carta_indentita.json
+2024-11-30 15:15:26,919 - INFO - Loaded document from RM_porto_armi.json
+2024-11-30 15:15:26,920 - INFO - Loaded document from RM_carta_identita.json
+2024-11-30 15:15:26,920 - INFO - Loaded document from NA_passaporto.json
+2024-11-30 15:15:26,920 - INFO - Loaded document from NA_casellario_giudiziale.json
+2024-11-30 15:15:26,920 - INFO - Loaded document from BA_passaporto.json
+2024-11-30 15:15:26,920 - INFO - Loaded document from RM_passaporto.json
+2024-11-30 15:15:26,921 - INFO - Loaded document from BA_casellario_giudiziale.json
+2024-11-30 15:15:26,921 - INFO - Loaded document from RM_casellario_giudiziale.json
+2024-11-30 15:15:26,921 - INFO - Loaded document from BA_carta_identita.json
+2024-11-30 15:15:32,198 - INFO - Use pytorch device_name: cpu
+2024-11-30 15:15:32,199 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 15:16:15,117 - INFO - Avvio del handler...
+2024-11-30 15:16:15,207 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 15:16:17,117 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 15:16:17,136 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 15:16:19,129 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 15:17:55,918 - INFO - Loaded document from NA_carta_indentita.json
+2024-11-30 15:17:55,918 - INFO - Loaded document from RM_porto_armi.json
+2024-11-30 15:17:55,919 - INFO - Loaded document from RM_carta_identita.json
+2024-11-30 15:17:55,919 - INFO - Loaded document from NA_passaporto.json
+2024-11-30 15:17:55,919 - INFO - Loaded document from NA_casellario_giudiziale.json
+2024-11-30 15:17:55,919 - INFO - Loaded document from BA_passaporto.json
+2024-11-30 15:17:55,920 - INFO - Loaded document from RM_passaporto.json
+2024-11-30 15:17:55,921 - INFO - Loaded document from BA_casellario_giudiziale.json
+2024-11-30 15:17:55,921 - INFO - Loaded document from RM_casellario_giudiziale.json
+2024-11-30 15:17:55,922 - INFO - Loaded document from BA_carta_identita.json
+2024-11-30 15:18:00,497 - INFO - Use pytorch device_name: cpu
+2024-11-30 15:18:00,498 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2024-11-30 15:18:31,265 - INFO - Avvio del handler...
+2024-11-30 15:18:31,334 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 15:18:32,609 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 15:18:32,623 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 15:18:34,701 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 15:20:00,484 - INFO - Avvio del handler...
+2024-11-30 15:20:00,507 - INFO - Formattazione della query tramite OpenAI...
+2024-11-30 15:20:01,897 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"
+2024-11-30 15:20:01,899 - INFO - Esecuzione della ricerca su Chroma...
+2024-11-30 15:20:04,180 - INFO - HTTP Request: POST https://api.aimlapi.com/v1/chat/completions "HTTP/1.1 201 Created"

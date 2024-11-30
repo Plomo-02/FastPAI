@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+websockets 
+langchain-community>=0.0.10
+langchain-core>=0.1.0
+langchain-openai==0.2.10
+langchain-chroma==0.1.4
+langchain-huggingface==0.1.1
+python-dotenv==1.0.1
+sentence-transformers
+chromadb
+debugpy
+scipy
