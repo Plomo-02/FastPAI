@@ -99,7 +99,7 @@ class LlamaChromaHandler:
         """
         implement the response formatting here, to obtain date e orari disponibili, e info 
         """
-        date_orari = result.get("date-orari")
+        date_orari = result.get("date_orari")
         need_to_do = result.get("need-to-do")
         result_json = {
             "llm_response": llm_response,
