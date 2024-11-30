@@ -6,6 +6,10 @@ import {
   Form,
   FormGroup,
   Input,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Row
 } from "design-react-kit";
 import React, { FC, useEffect, useRef, useState } from "react";
@@ -14,7 +18,7 @@ interface Message {
   id: number;
   text: string;
   sender: 'user' | 'bot';
-  data_ora?: { [key: string]: string[] }; // Aggiunto per gestire date e orari
+  data_ora?: { [key: string]: string[] };
 }
 
 export const Chat: FC = () => {
@@ -23,8 +27,20 @@ export const Chat: FC = () => {
   const socketRef = useRef<WebSocket | null>(null);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
+  // Stato per la modale
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedAppointment, setSelectedAppointment] = useState<string | null>(null);
+
+  // Stato per il banner di conferma
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+
+  // Stato per gli appuntamenti confermati
+  const [confirmedAppointments, setConfirmedAppointments] = useState<string[]>([]);
+
+  // Stato per l'hover sui bottoni
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+
   useEffect(() => {
-    // Creazione della connessione WebSocket
     const ws = new WebSocket('ws://localhost:8000/ws');
 
     ws.onopen = () => {
@@ -41,7 +57,7 @@ export const Chat: FC = () => {
           id: prev.length,
           text: data.message.llm_response.info,
           sender: 'bot',
-          data_ora: data.message.response // Gestione delle date e orari
+          data_ora: data.message.response
         }
       ]);
 
@@ -56,7 +72,6 @@ export const Chat: FC = () => {
       console.log('Disconnected from WebSocket');
     };
 
-    // Cleanup on component unmount
     return () => {
       if (socketRef.current) {
         socketRef.current.close();
@@ -80,6 +95,42 @@ export const Chat: FC = () => {
     setInputValue('');
     setIsTyping(true);
   };
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  const handleAppointmentClick = (appointment: string) => {
+    setSelectedAppointment(appointment);
+    toggleModal();
+  };
+
+  const handleShowAlert = () => {
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000); // Nasconde il banner dopo 3 secondi
+  };
+
+  const handleConfirm = () => {
+    if (selectedAppointment) {
+      setConfirmedAppointments((prev) => [...prev, selectedAppointment]); // Aggiungi l'appuntamento confermato
+    }
+    toggleModal();
+    handleShowAlert();
+  };
+
+  const handleMouseEnter = (key: string) => setHoveredButton(key);
+  const handleMouseLeave = () => setHoveredButton(null);
+
+  const buttonStyle = (key: string, disabled: boolean) => ({
+    transition: 'background-color 0.3s ease, color 0.3s ease',
+    backgroundColor: disabled
+      ? '#f8f9fa'
+      : hoveredButton === key
+      ? '#0066CC'
+      : '#ffffff',
+    color: disabled ? '#6c757d' : hoveredButton === key ? '#ffffff' : '#0066CC',
+    borderColor: disabled ? '#ced4da' : hoveredButton === key ? '#004C99' : '#0066CC',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.6 : 1
+  });
 
   return (
     <Card className="shadow-lg card-bg card-big">
@@ -122,10 +173,14 @@ export const Chat: FC = () => {
                         times.map((time, index) => (
                           <Button
                             key={`${date}-${index}`}
-                            color="secondary"
+                            color="primary"
                             outline
                             size="sm"
-                            onClick={() => console.log(`Selezionato: ${date} ${time}`)}
+                            onMouseEnter={() => handleMouseEnter(`${date}-${index}`)}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={() => handleAppointmentClick(`${date} ${time}`)}
+                            disabled={confirmedAppointments.includes(`${date} ${time}`)}
+                            style={buttonStyle(`${date}-${index}`, confirmedAppointments.includes(`${date} ${time}`))}
                           >
                             {`${date} ${time}`}
                           </Button>
@@ -177,6 +232,36 @@ export const Chat: FC = () => {
           </Row>
         </Form>
       </CardBody>
+
+      {/* Modale per confermare l'appuntamento */}
+      <Modal isOpen={isModalOpen} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}>Conferma Appuntamento</ModalHeader>
+        <ModalBody>
+          Sei sicuro di voler confermare l'appuntamento selezionato: <strong>{selectedAppointment}</strong>?
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={handleConfirm}>
+            Conferma
+          </Button>
+          <Button color="secondary" outline onClick={toggleModal}>
+            Annulla
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+      {/* Banner di conferma */}
+      {showAlert && (
+        <div
+          className="position-fixed top-0 start-50 translate-middle-x alert alert-success shadow-lg"
+          style={{
+            zIndex: 1050,
+            maxWidth: '90%',
+            animation: 'fade-in-out 3s'
+          }}
+        >
+          Appuntamento confermato con successo!
+        </div>
+      )}
     </Card>
   );
 };
