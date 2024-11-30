@@ -9,13 +9,13 @@ export const CenterHeader: FC<Props> = ({ props }) => {
 			<HeaderContent>
 				<HeaderBrand iconName={props?.iconName} iconAlt={props?.iconAlt || ""}>
 					<h2>FastPAI</h2>
-					<h3>F4 PAsiti</h3>
+					<h3>F4 Basiti</h3>
 				</HeaderBrand>
 				<HeaderRightZone>
 					<HeaderSocialsZone label="Source code on">
 						<ul>
 							<li>
-								<a href="#" aria-label="Github" target="https://github.com/Plomo-02/FastPAI">
+								<a href="https://github.com/Plomo-02/FastPAI" aria-label="Github" target="https://github.com/Plomo-02/FastPAI">
 									<Icon icon="it-github" />
 								</a>
 							</li>
