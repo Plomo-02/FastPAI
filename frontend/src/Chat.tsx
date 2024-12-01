@@ -208,15 +208,15 @@ export const Chat: FC = () => {
                         {Object.entries(message.data_ora).map(([date, times]) =>
                           times.map((time, index) => (
                             <Button
-                              key={`${date}-${index}`}
+                              key={`${date}-${index}-${message.id}`}
                               color="primary"
                               outline
                               size="sm"
-                              onMouseEnter={() => handleMouseEnter(`${date}-${index}`)}
+                              onMouseEnter={() => handleMouseEnter(`${date}-${index}-${message.id}`)}
                               onMouseLeave={handleMouseLeave}
                               onClick={() => handleAppointmentClick(`${date} ${time}`)}
                               disabled={confirmedAppointments.includes(`${date} ${time}`)}
-                              style={buttonStyle(`${date}-${index}`, confirmedAppointments.includes(`${date} ${time}`))}
+                              style={buttonStyle(`${date}-${index}-${message.id}`, confirmedAppointments.includes(`${date} ${time}`))}
                             >
                               {`${date} ${time}`}
                             </Button>
