@@ -1,10 +1,12 @@
 import logging
+import random
 from typing import List
 
 import debugpy
 from fastapi import FastAPI, WebSocket
 from init_db import load_documents_from_directory
 from rag.chain import initialize_chroma, run_handler
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -25,13 +27,45 @@ vectorstore = initialize_chroma(docs)
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     active_connections.append(websocket)
+
+    welcomes = [
+        "Ciao, sono PAI! Il tuo assistente per navigare i servizi della pubblica amministrazione. Come posso esserti utile?",
+        "Ciao! Sono PAI, il tuo assistente personale per esplorare i servizi della pubblica amministrazione. Come posso aiutarti oggi?",
+        "Benvenuto! Sono PAI, il tuo alleato per semplificare l'accesso ai servizi pubblici. Come posso esserti utile?"
+    ]
+    await websocket.send_json(
+        {
+            "message": {
+                "llm_response": {
+                    "info": random.choice(welcomes),
+                    "is_info": True,
+                },
+                "response": [],
+                "info": "",
+            }
+        }
+    )
+
     try:
+        history = []
+
         while True:
             data = await websocket.receive_text()
             logger.info("Human: %s", data)
+            parsed_data = json.loads(data)
+            logger.info("Parsed data: %s", parsed_data)
+            input_value = parsed_data.get("message")
+            history.append(f"human asked: {input_value}\n")
+            selected_city = parsed_data.get("city")
+            logger.info("selected_city: %s", selected_city)
 
             # AI Pipeline
-            result = run_handler(data, vectorstore, "napoli")
+            result = run_handler("".join(history), vectorstore, selected_city)
+
+            history.append(f"you answered: {result}\n")
+
+            while len(history) > 4:
+                history.pop(0)
 
             """
             Broadcast in teoria inutile visto che la comunicazione è 1-1

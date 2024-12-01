@@ -57,7 +57,7 @@ class ChromaDB:
             
             logging.info("Ricerca completata con successo.")
             filtered_results = [
-            (doc, score) for doc, score in results if score <= 1.0
+            (doc, score) for doc, score in results if score <= 1.05
         ]
             logging.info("Risultati: %s", results)    
         

@@ -36,3 +36,52 @@
     transform: rotate(360deg);
   }
 }
+
+.typing-indicator {
+  display: inline-block;
+}
+
+.dots {
+  display: inline-block;
+  animation: dotTyping 1.5s infinite;
+  width: 18px;
+}
+
+.form-group {
+  margin-bottom: 0px !important;
+}
+
+.chat-messages {
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 15px;
+  background-color: #f8f9fa;
+}
+
+@keyframes dotTyping {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: ""; }
+}
+
+.typing-dots span {
+  animation: blink 1s infinite;
+  animation-fill-mode: both;
+  margin-left: 2px;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}

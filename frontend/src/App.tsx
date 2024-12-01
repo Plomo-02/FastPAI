@@ -9,11 +9,13 @@ export const App: FC = () => {
 	return (
 		<div>
 			<CompleteHeader />
-			<div className="container my-4">
-				<div className="my-4">
-				</div>
-			</div>
-			<Chat />
+			<div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-lg-12 col-md-10 col-sm-12">
+                        <Chat />
+                    </div>
+                </div>
+            </div>
 		</div>
 	);
 };

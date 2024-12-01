@@ -57,13 +57,23 @@ class LlamaChromaHandler:
         {
         "info": "La tua risposta chiara e concisa all'utente.",
         "is_info": true/false  // true se la richiesta riguarda solo informazioni, false se riguarda una prenotazione.
-        }""",
+        } il campo is_info deve obbligatoriamente essere lower_case
+        """,
                 },
                 {"role": "user", "content": user_content},
             ],
             max_tokens=256,
         )
-        return response.choices[0].message.content.strip()
+        llm_response =  response.choices[0].message.content.strip()
+
+        
+        if isinstance(llm_response, str):
+            try:
+                llm_response = json.loads(llm_response)
+            except json.JSONDecodeError:
+                logger.error("Errore durante il caricamento del JSON: %s", llm_response)
+        
+        return llm_response
 
     def send_request(self, prompt: str) -> str:
         """Invia una richiesta al modello OpenAI."""
@@ -112,7 +122,12 @@ class LlamaChromaHandler:
         """
         implement the response formatting here, to obtain date e orari disponibili, e info 
         """
-        
+        if isinstance(llm_response, str):
+            try:
+                llm_response = json.loads(llm_response)
+            except json.JSONDecodeError:
+                logger.error("Errore durante il caricamento del JSON: %s", llm_response)
+                
         result_json = {
             "llm_response": llm_response,
             "response": date_orari,
@@ -147,8 +162,9 @@ def run_handler(query: str, vectorstore: ChromaDB, city: str = None):
         handler = LlamaChromaHandler(vectorstore=vectorstore)
 
         # Esegui la gestione della query
-        city = city.lower()
-        city = city.strip()
+        if city is not None:
+            city = city.lower().strip()
+
         result = handler.process_query(query, city)
         logging.info(" Risultati: %s", result)
 
