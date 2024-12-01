@@ -1,4 +1,5 @@
 import logging
+import random
 from typing import List
 
 import debugpy
@@ -26,6 +27,25 @@ vectorstore = initialize_chroma(docs)
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     active_connections.append(websocket)
+
+    welcomes = [
+        "Ciao, come posso aiutarti oggi?",
+        "Ciao sono PAI! Come posso aiutarti oggi?",
+        "Sono PAI! Come posso esserti utile?",
+    ]
+    await websocket.send_json(
+        {
+            "message": {
+                "llm_response": {
+                    "info": random.choice(welcomes),
+                    "is_info": True,
+                },
+                "response": [],
+                "info": "",
+            }
+        }
+    )
+
     try:
         history = []
 

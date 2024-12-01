@@ -230,7 +230,12 @@ export const Chat: FC = () => {
 
             {isTyping && (
               <div className="text-start">
-                <span className="p-2 bg-light text-dark" style = {{borderRadius: '14px'}}>Sto scrivendo...</span>
+                <span className="p-2 rounded bg-light text-dark">
+                  Sto scrivendo
+                  <span className="typing-dots">
+                    <span>.</span><span>.</span><span>.</span>
+                  </span>
+                </span>
               </div>
             )}
           </div>
