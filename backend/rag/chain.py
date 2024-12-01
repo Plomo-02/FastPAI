@@ -38,7 +38,7 @@ class LlamaChromaHandler:
         self.vectorstore = vectorstore
 
     def send_response(self, query: str, result: str) -> str:
-        """Invia una richiesta al modello OpenAI e restituisce solo un JSON strutturato."""
+        """Invia una richiesta al modello Llama e restituisce solo un JSON strutturato."""
         user_content = f"""Richiesta originale dell'utente: {query}
                             Risposta dal database vettoriale: {result}"""
 
@@ -49,30 +49,32 @@ class LlamaChromaHandler:
                     "role": "system",
                     "content": """Sei un assistente esperto di comunicazione chiara e accessibile per i cittadini. Ricevi una risposta da un database vettoriale contenente dati come città, date, orari disponibili e altre informazioni, insieme alla richiesta originale dell'utente. Il tuo compito è:
         1. Valutare se la risposta dal database vettoriale è sufficientemente correlata con la richiesta dell'utente. 
-            - Se lo è, formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti.
+            - Se lo è, formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti, in particolare informazioni relative ad indirizzi/dove trovare il servizio.
             - Se non lo è, generare autonomamente una risposta pertinente basandoti solo sulla richiesta dell'utente.
         2. Identificare se la richiesta dell'utente riguarda solo un'informazione o un'intenzione di prenotare un servizio.
 
         Devi restituire solo un JSON nel seguente formato e nient'altro:
+
         {
-        "info": "La tua risposta chiara e concisa all'utente.",
-        "is_info": true/false  // true se la richiesta riguarda solo informazioni, false se riguarda una prenotazione.
-        } il campo is_info deve obbligatoriamente essere lower_case
+            "info": "La tua risposta chiara e concisa all'utente. Possibilmente contente informazioni riguardo l'indirizzo dello sportello",
+            "is_info": true/false  // true se la richiesta riguarda solo informazioni, false se riguarda una prenotazione.
+        } 
+        
+        nota: il campo is_info deve obbligatoriamente essere lowercase
         """,
                 },
                 {"role": "user", "content": user_content},
             ],
             max_tokens=256,
         )
-        llm_response =  response.choices[0].message.content.strip()
+        llm_response = response.choices[0].message.content.strip()
 
-        
         if isinstance(llm_response, str):
             try:
                 llm_response = json.loads(llm_response)
             except json.JSONDecodeError:
                 logger.error("Errore durante il caricamento del JSON: %s", llm_response)
-        
+
         return llm_response
 
     def send_request(self, prompt: str) -> str:
@@ -115,7 +117,9 @@ class LlamaChromaHandler:
             date_orari = None
             need_to_do = None
         else:
-            metadata_formatted = " ".join(f"{key} {value}" for key, value in result.items())
+            metadata_formatted = " ".join(
+                f"{key} {value}" for key, value in result.items()
+            )
             date_orari = result.get("date_orari")
             need_to_do = result.get("need_to_do")
         llm_response = self.send_response(query, metadata_formatted)
@@ -127,7 +131,7 @@ class LlamaChromaHandler:
                 llm_response = json.loads(llm_response)
             except json.JSONDecodeError:
                 logger.error("Errore durante il caricamento del JSON: %s", llm_response)
-                
+
         result_json = {
             "llm_response": llm_response,
             "response": date_orari,

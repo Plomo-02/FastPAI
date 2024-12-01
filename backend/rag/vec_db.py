@@ -54,24 +54,18 @@ class ChromaDB:
             results = self.vectorstore.similarity_search_with_score(
                 query, k=1, filter={"comune": comune}
             )
-            
+
             logging.info("Ricerca completata con successo.")
-            filtered_results = [
-            (doc, score) for doc, score in results if score <= 1.05
-        ]
-            logging.info("Risultati: %s", results)    
-        
+            filtered_results = [(doc, score) for doc, score in results if score <= 1.15]
+            logging.info("Risultati: %s", results)
+
             if filtered_results:
                 logging.info("Risultato trovato con score <= 0.2.")
                 return filtered_results
             else:
                 logging.info("Nessun risultato soddisfa i criteri di similarità.")
                 return None
-    
+
         except Exception as e:
             logging.error(f"Errore durante l'elaborazione della query: {e}")
             raise
-
-
-
-
