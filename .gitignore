@@ -1,4 +1,10 @@
 .env
 /chroma_data/
 backend/chroma_add.log
+backend/chain_app.log
+backend/rag/app.log
+backend/rag/chroma_add.log
+backend/rag/chain_app.log
 frontend/node_modules/
+backend/__pycache__/*
+backend/rag/__pycache__/*
