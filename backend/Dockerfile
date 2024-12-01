@@ -14,5 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # No need to COPY source files since we're using volumes
 
+COPY . /app/
+
 ENTRYPOINT ["python", "-m","uvicorn", "main:app"]
 CMD ["--host", "0.0.0.0", "--port", "8000"] 
