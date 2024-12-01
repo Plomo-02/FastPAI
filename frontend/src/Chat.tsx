@@ -144,41 +144,33 @@ export const Chat: FC = () => {
   return (
     <>
       {/* Modale per selezionare una città */}
-<Modal isOpen={isCityModalOpen} toggle={() => setIsCityModalOpen(!isCityModalOpen)}>
-  <ModalHeader toggle={() => setIsCityModalOpen(!isCityModalOpen)}>
-    Seleziona una Città
-  </ModalHeader>
-  <ModalBody>
-    Scegli la tua città per continuare:
-    <div className="mt-3 d-flex flex-column gap-2">
-      <Button color="primary" onClick={() => handleCitySelect('Bari')}>
-        Bari
-      </Button>
-      <Button color="primary" onClick={() => handleCitySelect('Napoli')}>
-        Napoli
-      </Button>
-      <Button color="primary" onClick={() => handleCitySelect('Roma')}>
-        Roma
-      </Button>
-    </div>
-  </ModalBody>
-  <ModalFooter>
-  </ModalFooter>
-</Modal>
+      <Modal isOpen={isCityModalOpen} toggle={() => setIsCityModalOpen(!isCityModalOpen)}>
+        <ModalHeader toggle={() => setIsCityModalOpen(!isCityModalOpen)}>
+          Seleziona una Città
+        </ModalHeader>
+        <ModalBody>
+          Scegli la tua città per continuare:
+          <div className="mt-3 d-flex flex-column gap-2">
+            <Button color="primary" onClick={() => handleCitySelect('Bari')}>
+              Bari
+            </Button>
+            <Button color="primary" onClick={() => handleCitySelect('Napoli')}>
+              Napoli
+            </Button>
+            <Button color="primary" onClick={() => handleCitySelect('Roma')}>
+              Roma
+            </Button>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+        </ModalFooter>
+      </Modal>
 
-
+      {/* Area della chat */}
       <Card className="shadow-lg card-bg my-4">
         <CardBody className="d-flex flex-column" style={{ height: '70vh' }}>
           {/* Area dei messaggi */}
-          <div
-            className="chat-messages flex-grow-1 overflow-auto mb-3"
-            style={{
-              border: '1px solid #e0e0e0',
-              borderRadius: '14px',
-              padding: '15px',
-              backgroundColor: '#f8f9fa'
-            }}
-          >
+          <div className="chat-messages flex-grow-1 overflow-auto mb-3">
             {messages.map((message: Message) => (
               <div
                 key={message.id}
