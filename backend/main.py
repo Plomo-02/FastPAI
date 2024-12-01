@@ -29,9 +29,9 @@ async def websocket_endpoint(websocket: WebSocket):
     active_connections.append(websocket)
 
     welcomes = [
-        "Ciao, come posso aiutarti oggi?",
-        "Ciao sono PAI! Come posso aiutarti oggi?",
-        "Sono PAI! Come posso esserti utile?",
+        "Ciao, sono PAI! Il tuo assistente per navigare i servizi della pubblica amministrazione. Come posso esserti utile?",
+        "Ciao! Sono PAI, il tuo assistente personale per esplorare i servizi della pubblica amministrazione. Come posso aiutarti oggi?",
+        "Benvenuto! Sono PAI, il tuo alleato per semplificare l'accesso ai servizi pubblici. Come posso esserti utile?"
     ]
     await websocket.send_json(
         {
