@@ -27,17 +27,25 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     active_connections.append(websocket)
     try:
+        history = []
+
         while True:
             data = await websocket.receive_text()
             logger.info("Human: %s", data)
             parsed_data = json.loads(data)
             logger.info("Parsed data: %s", parsed_data)
             input_value = parsed_data.get("message")
+            history.append(f"human asked: {input_value}\n")
             selected_city = parsed_data.get("city")
             logger.info("selected_city: %s", selected_city)
 
             # AI Pipeline
-            result = run_handler(input_value, vectorstore, selected_city)
+            result = run_handler("".join(history), vectorstore, selected_city)
+
+            history.append(f"you answered: {result}\n")
+
+            while len(history) > 4:
+                history.pop(0)
 
             """
             Broadcast in teoria inutile visto che la comunicazione è 1-1

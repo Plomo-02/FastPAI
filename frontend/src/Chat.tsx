@@ -167,33 +167,35 @@ export const Chat: FC = () => {
 </Modal>
 
 
-      <Card className="shadow-lg card-bg card-big">
-        <CardBody className="d-flex flex-column">
+      <Card className="shadow-lg card-bg my-4">
+        <CardBody className="d-flex flex-column" style={{ height: '70vh' }}>
           {/* Area dei messaggi */}
           <div
             className="chat-messages flex-grow-1 overflow-auto mb-3"
             style={{
               border: '1px solid #e0e0e0',
-              borderRadius: '4px',
-              padding: '10px'
+              borderRadius: '14px',
+              padding: '15px',
+              backgroundColor: '#f8f9fa'
             }}
           >
             {messages.map((message: Message) => (
               <div
                 key={message.id}
-                className={`message mb-2 ${message.sender === 'user' ? 'text-end' : 'text-start'}`}
+                className={`message mb-3 ${message.sender === 'user' ? 'text-end' : 'text-start'}`}
               >
                 <span
                   className={`
-                    p-2 
-                    rounded 
+                    p-3 
                     ${message.sender === 'user'
                       ? 'bg-primary text-white'
-                      : 'bg-light text-dark'}
+                      : 'bg-white text-dark shadow-sm'}
                   `}
                   style={{
                     display: 'inline-block',
-                    maxWidth: '80%'
+                    maxWidth: '70%',
+                    wordWrap: 'break-word',
+                    borderRadius: '14px'
                   }}
                 >
                   {message.text}
@@ -228,37 +230,33 @@ export const Chat: FC = () => {
 
             {isTyping && (
               <div className="text-start">
-                <span className="p-2 rounded bg-light text-dark">Sto scrivendo...</span>
+                <span className="p-2 bg-light text-dark" style = {{borderRadius: '14px'}}>Sto scrivendo...</span>
               </div>
             )}
           </div>
 
           {/* Input del messaggio */}
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit(e);
-            }}
-            className="mt-auto"
-          >
-            <Row>
-              <Col md={9}>
-                <FormGroup>
+          <Form onSubmit={handleSubmit} className="mt-auto">
+            <Row className="g-2">
+              <Col>
+                <FormGroup className="mb-0">
                   <Input
                     id="chat-input"
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Scrivi un messaggio..."
+                    className="rounded-pill border-2"
+                    style={{ padding: '0.75rem 1.5rem' }}
                   />
                 </FormGroup>
               </Col>
-              <Col md={3}>
+              <Col xs="auto">
                 <Button
                   color="primary"
                   type="submit"
                   disabled={inputValue.trim() === ""}
-                  block
+                  className="rounded-pill px-4"
                 >
                   Invia
                 </Button>
