@@ -1,3 +1,4 @@
 .env
 /chroma_data/
 backend/chroma_add.log
+frontend/node_modules/
