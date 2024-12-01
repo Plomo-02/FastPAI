@@ -45,7 +45,7 @@ export const Chat: FC = () => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8000/ws');
+    const ws = new WebSocket(`ws${window.location.protocol === 'https:' ? 's' : ''}://${window.location.host}/ws`);
 
     ws.onopen = () => {
       console.log('Connected to WebSocket');
