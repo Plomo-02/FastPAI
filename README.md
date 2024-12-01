@@ -6,6 +6,11 @@ Un'applicazione progettata per semplificare la comunicazione con la pubblica amm
   <img src="https://raw.githubusercontent.com/Plomo-02/FastPAI/main/assets/PAI.png" alt="Logo PAI" width="200">
 </div>
 
+**Pubblica Amministrazione Intelligente (PAI)** è un'applicazione innovativa progettata per rivoluzionare il modo in cui i cittadini interagiscono con la pubblica amministrazione. Spesso, affrontare i processi burocratici, trovare i servizi giusti o prenotare appuntamenti può essere complesso e frustrante. PAI risolve queste sfide grazie a un agente virtuale basato sull'intelligenza artificiale, che offre un'esperienza semplice, veloce e intuitiva.
+
+L'app utilizza tecnologie avanzate, tra cui il modello linguistico Llama 3.1, per comprendere le richieste degli utenti e fornire risposte precise e contestuali. Permette di cercare rapidamente i servizi pubblici più adatti e prenotare appuntamenti in pochi clic, rendendo l'intero processo semplice e a portata di ogni cittadino.
+
+Con PAI, la pubblica amministrazione entra in una nuova era digitale, riducendo le barriere burocratiche e migliorando l'efficienza dei servizi offerti. Un alleato indispensabile per chi cerca praticità e innovazione.
 
 ## Caratteristiche principali
 - **Chatbot Interattivo**: Un'interfaccia semplice e intuitiva per comunicare con l'agente virtuale.
