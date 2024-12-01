@@ -1,6 +1,11 @@
-# Public Administration Assistant (PAA)
+# Pubblica Amministrazione Intelligente (PAI)
 
 Un'applicazione progettata per semplificare la comunicazione con la pubblica amministrazione, fornendo un agente virtuale per aiutare gli utenti a trovare servizi e prenotare appuntamenti.
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Plomo-02/FastPAI/main/assets/PAI.png" alt="Logo PAI" width="200">
+</div>
+
 
 ## Caratteristiche principali
 - **Chatbot Interattivo**: Un'interfaccia semplice e intuitiva per comunicare con l'agente virtuale.
@@ -11,8 +16,9 @@ Un'applicazione progettata per semplificare la comunicazione con la pubblica amm
 ---
 
 ## Tecnologie Utilizzate
-- **Frontend**: [Streamlit](https://streamlit.io/)
-- **Backend**: Python (FastAPI)
+- **Frontend**: React, [Design React Kit](https://github.com/italia/design-react-kit)
+- **Backend**: FastAPI, Chroma
+- **Infrastruttura**: Docker
 - **Modello Linguistico**: Llama 3.1
 
 ---
