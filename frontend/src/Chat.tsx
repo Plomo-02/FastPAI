@@ -84,6 +84,14 @@ export const Chat: FC = () => {
     };
   }, []);
 
+
+  // scroll down on new message
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputValue.trim() || !socketRef.current) return;
@@ -133,8 +141,8 @@ export const Chat: FC = () => {
     backgroundColor: disabled
       ? '#f8f9fa'
       : hoveredButton === key
-      ? '#0066CC'
-      : '#ffffff',
+        ? '#0066CC'
+        : '#ffffff',
     color: disabled ? '#6c757d' : hoveredButton === key ? '#ffffff' : '#0066CC',
     borderColor: disabled ? '#ced4da' : hoveredButton === key ? '#004C99' : '#0066CC',
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -219,6 +227,7 @@ export const Chat: FC = () => {
                 </span>
               </div>
             ))}
+            <div ref={messagesEndRef} />
 
             {isTyping && (
               <div className="text-start">
