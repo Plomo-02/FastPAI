@@ -40,20 +40,20 @@ class LlamaChromaHandler:
     def send_response(self, query: str, result: str) -> str:
         """Invia una richiesta al modello Llama e restituisce solo un JSON strutturato."""
         user_content = f"""Richiesta originale dell'utente: {query}
-                            Risposta dal database vettoriale: {result}"""
+                            Risposta dal database: {result}"""
 
         response = self.client.chat.completions.create(
             model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",  # Modello utilizzato
             messages=[
                 {
                     "role": "system",
-                    "content": """Sei un assistente esperto di comunicazione chiara e accessibile per i cittadini. Ricevi una risposta da un database vettoriale contenente dati come città, date, orari disponibili e altre informazioni, insieme alla richiesta originale dell'utente. Il tuo compito è:
-        1. Valutare se la risposta dal database vettoriale è sufficientemente correlata con la richiesta dell'utente. 
+                    "content": """Sei un assistente esperto di comunicazione chiara e accessibile per i cittadini. Ricevi una risposta da un database contenente dati come città, date, orari disponibili e altre informazioni, insieme alla richiesta originale dell'utente. Il tuo compito è:
+        1. Valutare se la risposta dal database è sufficientemente correlata con la richiesta dell'utente. 
             - Se lo è, formulare una risposta semplice, chiara, concisa e facilmente comprensibile da qualunque cittadino, mantenendo solo le informazioni più rilevanti, in particolare informazioni relative ad indirizzi/dove trovare il servizio.
             - Se non lo è, generare autonomamente una risposta pertinente basandoti solo sulla richiesta dell'utente.
         2. Identificare se la richiesta dell'utente riguarda solo un'informazione o un'intenzione di prenotare un servizio.
 
-        Devi restituire solo un JSON nel seguente formato e nient'altro:
+        Devi restituire solo un JSON nel seguente formato e nient'altro (non fare riferimenti non necessari):
 
         {
             "info": "La tua risposta chiara e concisa all'utente. Possibilmente contente informazioni riguardo l'indirizzo dello sportello",
@@ -84,8 +84,8 @@ class LlamaChromaHandler:
             messages=[
                 {
                     "role": "system",
-                    "content": """Sei un assistente esperto di ricerca e Ricevi una richiesta utente e riformulala per essere adatta a una ricerca semantica per similarità in un database vettoriale (ChromaDB).
-    Assicurati che la richiesta sia chiara, concisa e rappresenti al meglio l'intento originale dell'utente. rispondi esclusivamente con la richiesta senza scrivere.""",
+                    "content": """Sei un assistente esperto di ricerca. Ricevi una richiesta utente e riformulala per essere adatta a una ricerca semantica per similarità in un database vettoriale (ChromaDB).
+    Assicurati che la richiesta sia chiara, concisa e rappresenti al meglio l'intento originale dell'utente. Rispondi esclusivamente con la richiesta sinteticamente senza scrivere altro.""",
                 },
                 {"role": "user", "content": prompt},
             ],
