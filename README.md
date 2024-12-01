@@ -28,15 +28,10 @@ Con PAI, la pubblica amministrazione entra in una nuova era digitale, riducendo 
 
 ---
 
-## Installazione e Configurazione
+## Accesso all'Applicazione
 
-### Prerequisiti
-- Python 3.8 o superiore
-- Pip (gestore pacchetti Python)
-- Ambiente virtuale Python (opzionale ma consigliato)
+Puoi accedere all'applicazione **Pubblica Amministrazione Intelligente (PAI)** cliccando sul seguente link:
 
-### Istruzioni per l'installazione
-1. **Clona la repository:**
-   ```bash
-   git clone https://github.com/username/public-administration-assistant.git
-   cd public-administration-assistant
+👉 [Accedi a PAI](https://fastpai.giize.com/)
+
+L'applicazione è progettata per essere intuitiva e accessibile, offrendo tutte le funzionalità direttamente dal tuo browser.
